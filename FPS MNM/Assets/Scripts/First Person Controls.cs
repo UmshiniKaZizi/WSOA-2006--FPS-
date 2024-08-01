@@ -10,7 +10,7 @@ public class FirstPersonControls : MonoBehaviour
     public float moveSpeed; // Speed at which the player moves
     public float lookSpeed; // Sensitivity of the camera movement
     public float gravity = -9.81f; // Gravity value
-    //public float jumpHeight = 1.0f; // Height of the jump
+    public float jumpHeight = 1.0f; // Height of the jump
     public Transform playerCamera; // Reference to the player's camera
 
     // Private variables to store input values and the character controller
@@ -45,18 +45,18 @@ public class FirstPersonControls : MonoBehaviour
         playerInput.Player.Look.canceled += ctx => lookInput = Vector2.zero; // Reset lookInput when look input is canceled
 
         // Subscribe to the jump input event
-       // playerInput.Player.Jump.performed += ctx => Jump(); // Call the Jump method when jump input is performed
+        playerInput.Player.Jump.performed += ctx => Jump(); // Call the Jump method when jump input is performed
     }
 
     private void Update()
     {
         // Call Move and LookAround methods every frame to handle player movement and camera rotation
-        Move();
-        LookAround();
+        Movement();
+        Look();
         ApplyGravity();
     }
 
-    public void Move()
+    public void Movement()
     {
         // Create a movement vector based on the input
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
@@ -68,7 +68,7 @@ public class FirstPersonControls : MonoBehaviour
         characterController.Move(move * moveSpeed * Time.deltaTime);
     }
 
-    public void LookAround()
+    public void Look()
     {
         // Get horizontal and vertical look inputs and adjust based on sensitivity
         float LookX = lookInput.x * lookSpeed;
@@ -96,12 +96,12 @@ public class FirstPersonControls : MonoBehaviour
         characterController.Move(velocity * Time.deltaTime); // Apply the velocity to the character
     }
 
-   /* public void Jump()
+    public void Jump()
     {
         if (characterController.isGrounded)
         {
             // Calculate the jump velocity
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
-    }*/
+    }
 }
