@@ -129,12 +129,33 @@ public class FirstPersonControls : MonoBehaviour
     {
         if (holdingGun == true)
         {
+            Vector3 direction;
+
+            if ( Input.mousePresent)
+            {
+                Ray ray = playerCamera.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
+                { 
+                    direction=(hit.point - firePoint.position).normalized;
+                }
+                else
+                {
+                    direction= ray.direction;
+                }
+                
+            }
+            else
+            {
+                direction = firePoint.forward;
+            }
             // Instantiate the projectile at the fire point
             GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
 
             // Get the Rigidbody component of the projectile and set its velocity
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
-            rb.velocity = firePoint.forward * projectileSpeed;
+            rb.velocity = direction * projectileSpeed;
 
             // Destroy the projectile after 3 seconds
             Destroy(projectile, 3f);
