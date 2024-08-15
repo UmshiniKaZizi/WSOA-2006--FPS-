@@ -283,7 +283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemyprefab: {fileID: 7702990147065452602, guid: e6991ef6b3fd96e4b9e915663b61200e,
     type: 3}
-  SpawnInterval: 1
+  SpawnInterval: 5
   MaxEnemies: 5
   SpawnPoints:
   - {fileID: 2297675093770575973, guid: e989a63e6c5278a499baa3e939fb374b, type: 3}
@@ -292,6 +292,7 @@ MonoBehaviour:
   - {fileID: 8321145802987597076, guid: a289c8079da96e349bb194b4fb5d7a60, type: 3}
   spawnPointPrefab: {fileID: 3969118663047869241, guid: e989a63e6c5278a499baa3e939fb374b,
     type: 3}
+  CurrentEnemyCount: 0
 --- !u!1 &67705216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1945,7 +1946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d40e32bc0e25bf48a9ca31c8298d79b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 5
   lookSpeed: 1
   gravity: -9.81
   jumpHeight: 1
