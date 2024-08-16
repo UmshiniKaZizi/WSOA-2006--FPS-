@@ -19,6 +19,19 @@ public class FirstPersonControls : MonoBehaviour
     private float verticalLookRotation = 0f; // Keeps track of vertical camera rotation for clamping
     private Vector3 velocity; // Velocity of the player
     private CharacterController characterController; // Reference to the CharacterController component
+   
+    
+    [Header("SPRINTING SETTINGS")]
+    [Space(5)]
+
+    public float doubletaptime = 0.5f;
+    public float movementspeedmultiplier = 2f;
+    public float sprintTime = 4f;
+
+    private float taptime;
+    private bool  sprinting = false;
+    
+    
 
     [Header("SHOOTING SETTINGS")]
     [Space(5)]
@@ -49,7 +62,10 @@ public class FirstPersonControls : MonoBehaviour
         playerInput.Player.Enable();
 
         // Subscribe to the movement input events
-        playerInput.Player.Movement.performed += ctx => moveInput = ctx.ReadValue<Vector2>(); // Update moveInput when movement input is performed
+        playerInput.Player.Movement.performed += ctx => {
+            moveInput = ctx.ReadValue<Vector2>(); // Update moveInput when movement input is performed
+            Sprint(); // Check for sprint on movement
+        };
         playerInput.Player.Movement.canceled += ctx => moveInput = Vector2.zero; // Reset moveInput when movement input is canceled
 
         // Subscribe to the look input events
@@ -74,6 +90,7 @@ public class FirstPersonControls : MonoBehaviour
         Move();
         LookAround();
         ApplyGravity();
+       
     }
 
     public void Move()
@@ -84,10 +101,27 @@ public class FirstPersonControls : MonoBehaviour
         // Transform direction from local to world space
         move = transform.TransformDirection(move);
 
+        float currentSpeed = sprinting ? moveSpeed * movementspeedmultiplier : moveSpeed;
         // Move the character controller based on the movement vector and speed
-        characterController.Move(move * moveSpeed * Time.deltaTime);
+        characterController.Move(move * currentSpeed * Time.deltaTime);
     }
-
+    public void Sprint()
+    {
+        if (!sprinting && moveInput != Vector2.zero)
+        {   if(Time.time - taptime < doubletaptime)
+            {
+                StartCoroutine(StartSprint());
+            }
+            taptime = Time.time;
+        }
+    }
+    public IEnumerator StartSprint()
+    {
+        sprinting = true;
+        Debug.Log("Sprinting");
+        yield return new WaitForSeconds(sprintTime);
+        sprinting = false;
+    }
     public void LookAround()
     {
         // Get horizontal and vertical look inputs and adjust based on sensitivity
