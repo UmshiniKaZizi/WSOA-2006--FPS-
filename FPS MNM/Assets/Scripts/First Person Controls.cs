@@ -25,7 +25,7 @@ public class FirstPersonControls : MonoBehaviour
     public GameObject projectilePrefab; // Projectile prefab for shooting
     public Transform firePoint; // Point from which the projectile is fired
     public float projectileSpeed = 20f; // Speed at which the projectile is fired
-    public float pickUpRange = 3f; // Range within which objects can be picked up
+    public float pickUpRange = 5f; // Range within which objects can be picked up
     private bool holdingGun = true;
 
     [Header("PICKING UP SETTINGS")]
@@ -131,20 +131,20 @@ public class FirstPersonControls : MonoBehaviour
         {
             Vector3 direction;
 
-            if ( Input.mousePresent)
+            if (Input.mousePresent)
             {
                 Ray ray = playerCamera.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
                 if (Physics.Raycast(ray, out hit))
-                { 
-                    direction=(hit.point - firePoint.position).normalized;
+                {
+                    direction = (hit.point - firePoint.position).normalized;
                 }
                 else
                 {
-                    direction= ray.direction;
+                    direction = ray.direction;
                 }
-                
+
             }
             else
             {
@@ -159,6 +159,10 @@ public class FirstPersonControls : MonoBehaviour
 
             // Destroy the projectile after 3 seconds
             Destroy(projectile, 3f);
+        }
+        else
+        {
+            Debug.Log("you dont have a gun");
         }
     }
 
