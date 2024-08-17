@@ -39,7 +39,9 @@ public class FirstPersonControls : MonoBehaviour
     public Transform firePoint; // Point from which the projectile is fired
     public float projectileSpeed = 20f; // Speed at which the projectile is fired
     public float pickUpRange = 5f; // Range within which objects can be picked up
-    private bool holdingGun = true;
+    public bool holdingGun = false;
+    private Weapon weapon;
+    
 
     [Header("PICKING UP SETTINGS")]
     [Space(5)]
@@ -55,34 +57,34 @@ public class FirstPersonControls : MonoBehaviour
 
     private void OnEnable()
     {
-        // Create a new instance of the input actions
         var playerInput = new Controls();
-
-        // Enable the input actions
         playerInput.Player.Enable();
 
-        // Subscribe to the movement input events
         playerInput.Player.Movement.performed += ctx => {
-            moveInput = ctx.ReadValue<Vector2>(); // Update moveInput when movement input is performed
-            Sprint(); // Check for sprint on movement
+            moveInput = ctx.ReadValue<Vector2>();
+            Sprint();
         };
-        playerInput.Player.Movement.canceled += ctx => moveInput = Vector2.zero; // Reset moveInput when movement input is canceled
+        playerInput.Player.Movement.canceled += ctx => moveInput = Vector2.zero;
 
-        // Subscribe to the look input events
-        playerInput.Player.Look.performed += ctx => lookInput = ctx.ReadValue<Vector2>(); // Update lookInput when look input is performed
-        playerInput.Player.Look.canceled += ctx => lookInput = Vector2.zero; // Reset lookInput when look input is canceled
+        playerInput.Player.Look.performed += ctx => lookInput = ctx.ReadValue<Vector2>();
+        playerInput.Player.Look.canceled += ctx => lookInput = Vector2.zero;
 
-        // Subscribe to the jump input event
-        playerInput.Player.Jump.performed += ctx => Jump(); // Call the Jump method when jump input is performed
+        playerInput.Player.Jump.performed += ctx => Jump();
 
-        // Subscribe to the shoot input event
-        playerInput.Player.Shoot.performed += ctx => Shoot(); // Call the Shoot method when shoot input is performed
+        playerInput.Player.Shoot.performed += ctx => {
+            if (weapon != null)
+            {
+                weapon.Shoot();
+            }
+            else
+            {
+                Debug.LogError("No weapon equipped!");
+            }
+        };
 
-        // Subscribe to the pick-up input event
-        playerInput.Player.PickUp.performed += ctx => PickUpObject(); // Call the PickUpObject method when pick-up input is performed
-
-
+        playerInput.Player.PickUp.performed += ctx => PickUpObject();
     }
+
 
     private void Update()
     {
@@ -159,94 +161,110 @@ public class FirstPersonControls : MonoBehaviour
         }
     }
 
-    public void Shoot()
+   /* public void Shoot()
     {
-        if (holdingGun == true)
+        if (holdingGun == false || weapon == null)
         {
-            Vector3 direction;
+            Debug.LogError("No weapon equipped!");
+            return;
+        }
 
-            if (Input.mousePresent)
+        RaycastHit hit;
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, weapon.Range))
+        {
+            Debug.Log("Hit: " + hit.transform.name); // Add this line
+            Enemy enemy = hit.transform.GetComponent<Enemy>();
+            if (enemy != null)
             {
-                Ray ray = playerCamera.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit))
-                {
-                    direction = (hit.point - firePoint.position).normalized;
-                }
-                else
-                {
-                    direction = ray.direction;
-                }
-
+                enemy.enemydamage(weapon.Damage);
             }
-            else
-            {
-                direction = firePoint.forward;
-            }
-            // Instantiate the projectile at the fire point
-            GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        }
+    }/*
 
-            // Get the Rigidbody component of the projectile and set its velocity
-            Rigidbody rb = projectile.GetComponent<Rigidbody>();
-            rb.velocity = direction * projectileSpeed;
+    //if (holdingGun == true)
+    // {
 
-            // Destroy the projectile after 3 seconds
-            Destroy(projectile, 3f);
+    // Vector3 direction;
+
+    /*if (Input.mousePresent)
+    {
+        Ray ray = playerCamera.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            direction = (hit.point - firePoint.position).normalized;
         }
         else
         {
-            Debug.Log("you dont have a gun");
+            direction = ray.direction;
         }
+
     }
+    else
+    {
+        direction = firePoint.forward;
+    }
+    // Instantiate the projectile at the fire point
+    GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+
+    // Get the Rigidbody component of the projectile and set its velocity
+    Rigidbody rb = projectile.GetComponent<Rigidbody>();
+    rb.velocity = direction * projectileSpeed;
+
+    // Destroy the projectile after 3 seconds
+    Destroy(projectile, 3f);*/
+    // }
+    //else
+    /// {
+    //     Debug.Log("you dont have a gun");
+    // }
 
     public void PickUpObject()
+{
+    if (heldObject != null)
     {
-        // Check if we are already holding an object
-        if (heldObject != null)
+        heldObject.GetComponent<Rigidbody>().isKinematic = false;
+        heldObject.transform.parent = null;
+        holdingGun = false;
+        weapon = null; 
+    }
+
+    Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+    RaycastHit hit;
+
+    Debug.DrawRay(playerCamera.position, playerCamera.forward * pickUpRange, Color.red, 2f);
+
+    if (Physics.Raycast(ray, out hit, pickUpRange))
+    {
+        // Check if you have picked up an object or the gun
+        if (hit.collider.CompareTag("PickUp") || hit.collider.CompareTag("Gun"))
         {
-            heldObject.GetComponent<Rigidbody>().isKinematic = false; // Enable physics
-            heldObject.transform.parent = null;
-            holdingGun = false;
-        }
+            heldObject = hit.collider.gameObject;
+            heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
 
-        // Perform a raycast from the camera's position forward
-        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
-        RaycastHit hit;
+            heldObject.transform.position = holdPosition.position;
+            heldObject.transform.rotation = holdPosition.rotation;
+            heldObject.transform.parent = holdPosition;
 
-        // Debugging: Draw the ray in the Scene view
-        Debug.DrawRay(playerCamera.position, playerCamera.forward * pickUpRange, Color.red, 2f);
-
-
-        if (Physics.Raycast(ray, out hit, pickUpRange))
-        {
-            // Check if the hit object has the tag "PickUp"
-            if (hit.collider.CompareTag("PickUp"))
+            if (hit.collider.CompareTag("Gun"))
             {
-                // Pick up the object
-                heldObject = hit.collider.gameObject;
-                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
-
-                // Attach the object to the hold position
-                heldObject.transform.position = holdPosition.position;
-                heldObject.transform.rotation = holdPosition.rotation;
-                heldObject.transform.parent = holdPosition;
-            }
-            else if (hit.collider.CompareTag("Gun"))
-            {
-                // Pick up the object
-                heldObject = hit.collider.gameObject;
-                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
-
-                // Attach the object to the hold position
-                heldObject.transform.position = holdPosition.position;
-                heldObject.transform.rotation = holdPosition.rotation;
-                heldObject.transform.parent = holdPosition;
-
-                holdingGun = true;
+                weapon = heldObject.GetComponent<Weapon>();
+                if (weapon != null)
+                {
+                    holdingGun = true;
+                    Debug.Log("Weapon equipped!");
+                }
+                else
+                {
+                    Debug.LogError("No Weapon script found on the gun!");
+                }
             }
         }
     }
+}
+
+
 
 
 }
