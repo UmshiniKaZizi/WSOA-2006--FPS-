@@ -3,39 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
-{   
+{
     public GameObject Enemyprefab;
-   // public GameObject SpawnerPrefab;
     public float SpawnInterval;
-    public int  MaxEnemies = 5 ;
-    public Transform[] SpawnPoints ;
-    public GameObject spawnPointPrefab; // Reference to the spawn point prefab
-
+    public int MaxEnemies = 5;
+    public Transform[] SpawnPoints;
+    public GameObject spawnPointPrefab;
+    private int spawnCount = 0; 
     public int CurrentEnemyCount = 0;
-    // Start is called before the first frame update
+
     void Start()
     {
         for (int i = 0; i < SpawnPoints.Length; i++)
         {
             Transform spawnPoint = Instantiate(spawnPointPrefab, SpawnPoints[i].position, SpawnPoints[i].rotation).transform;
-            SpawnPoints[i] = spawnPoint; // Assign the instantiated spawn point to the array
+            SpawnPoints[i] = spawnPoint;
         }
         StartCoroutine(SpawnEnemies());
+        
+        
     }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     public IEnumerator SpawnEnemies()
-    {   while (true)
+    {
+        while (true)
         {
             yield return new WaitForSeconds(SpawnInterval);
 
             if (CurrentEnemyCount < MaxEnemies)
-
             {
-                Transform SpawnPoint = SpawnPoints[Random.Range(0, SpawnPoints.Length)];
-                //Instantiate(Enemyprefab, SpawnPoint.position, SpawnPoint.rotation);
-                GameObject newEnemy = Instantiate(Enemyprefab, SpawnPoint.position, SpawnPoint.rotation);
-                newEnemy.GetComponent<Enemy>().spawner = this; // Pass the reference to the Enemy script
+                Transform spawnPoint = SpawnPoints[Random.Range(0, SpawnPoints.Length)];
+                GameObject newEnemy = Instantiate(Enemyprefab, spawnPoint.position, spawnPoint.rotation);
+                newEnemy.GetComponent<Enemy>().spawner = this;
                 CurrentEnemyCount++;
-
+                spawnCount++;
+                if (spawnCount ==15)
+                {
+                    QuitGame();
+                }
             }
         }
     }
@@ -44,7 +53,16 @@ public class EnemySpawner : MonoBehaviour
     {
         CurrentEnemyCount--;
     }
-    // Update is called once per frame
+
+    public void ResetEnemies()
+    {
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.ResetHealth();
+        }
+    }
+
     void Update()
     {
         
