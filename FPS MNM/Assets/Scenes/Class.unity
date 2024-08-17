@@ -1956,10 +1956,11 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c74af00bf30d5ca4ea876e4520f8085b,
         type: 3}
       propertyPath: m_Name
-      value: Low Poly
+      value: Gun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7624253256812930402, guid: c74af00bf30d5ca4ea876e4520f8085b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c74af00bf30d5ca4ea876e4520f8085b, type: 3}
@@ -3256,6 +3257,7 @@ GameObject:
   - component: {fileID: 1012371172}
   - component: {fileID: 1012371171}
   - component: {fileID: 1012371170}
+  - component: {fileID: 1012371174}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -3278,7 +3280,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -3344,11 +3346,24 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 45.025085, y: 0.12, z: -0.947}
-  m_LocalScale: {x: 1, y: 0.12462, z: 1}
+  m_LocalScale: {x: 2.2827, y: 0.12462, z: 2.3544}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1012371174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012371169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea03e130ef6ed9d4d8666a800f55b65d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1708256603}
 --- !u!1001 &1042835690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4653,7 +4668,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1486107131}
-  - component: {fileID: 1486107130}
+  - component: {fileID: 1486107132}
   m_Layer: 0
   m_Name: Mesh Nav
   m_TagString: Untagged
@@ -4661,7 +4676,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1486107130
+--- !u!4 &1486107131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486107129}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 58.91651, y: 14.47532, z: 31.71497}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1486107132
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4679,7 +4709,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 4294967295
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -4690,23 +4720,8 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: af0e879c3e755f24ba43da4c524bf843, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 7a1b400de1fbe774d8598d46313850ed, type: 2}
   m_BuildHeightMesh: 0
---- !u!4 &1486107131
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1486107129}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 58.91651, y: 14.47532, z: 31.71497}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1494760673
 GameObject:
   m_ObjectHideFlags: 0
@@ -5257,7 +5272,7 @@ Transform:
   m_GameObject: {fileID: 1708256603}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.6, y: 46.7, z: -16.2}
+  m_LocalPosition: {x: 19.6, y: 1.89, z: -16.2}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5277,7 +5292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d40e32bc0e25bf48a9ca31c8298d79b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 10
   lookSpeed: 1
   gravity: -9.81
   jumpHeight: 1
@@ -5292,6 +5307,8 @@ MonoBehaviour:
   pickUpRange: 3
   holdingGun: 1
   holdPosition: {fileID: 406216162}
+  TeleportLocation: {fileID: 0}
+  canTeleport: 0
 --- !u!1 &1712943972
 GameObject:
   m_ObjectHideFlags: 0
