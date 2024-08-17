@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     public int MaxEnemies = 5;
     public Transform[] SpawnPoints;
     public GameObject spawnPointPrefab;
-
+    private int spawnCount = 0; 
     public int CurrentEnemyCount = 0;
 
     void Start()
@@ -20,6 +20,12 @@ public class EnemySpawner : MonoBehaviour
             SpawnPoints[i] = spawnPoint;
         }
         StartCoroutine(SpawnEnemies());
+        
+        
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     public IEnumerator SpawnEnemies()
@@ -34,6 +40,11 @@ public class EnemySpawner : MonoBehaviour
                 GameObject newEnemy = Instantiate(Enemyprefab, spawnPoint.position, spawnPoint.rotation);
                 newEnemy.GetComponent<Enemy>().spawner = this;
                 CurrentEnemyCount++;
+                spawnCount++;
+                if (spawnCount ==15)
+                {
+                    QuitGame();
+                }
             }
         }
     }
@@ -54,6 +65,6 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        // Call ResetEnemies() as needed
+        
     }
 }
