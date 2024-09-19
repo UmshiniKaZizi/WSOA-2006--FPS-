@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FirstPersonControls : MonoBehaviour
@@ -40,10 +41,19 @@ public class FirstPersonControls : MonoBehaviour
     public Transform holdPosition;
     private GameObject heldObject;
 
+    [Header("SECOND WEAPON HOLD POSITION")]
+    public Transform holdPositionSecondWeapon; 
+
+
     [Header("TELEPORT SETTINGS")]
     [Space(5)]
     public Transform TeleportLocation;
     public bool canTeleport = false;
+
+    [Header("WEAPON SETTINGS")]
+    public List<Weapon> weapons = new List<Weapon>(); 
+    private int currentWeaponIndex = 0;
+
 
     private void Awake()
     {
@@ -79,6 +89,7 @@ public class FirstPersonControls : MonoBehaviour
 
         playerInput.Player.PickUp.performed += ctx => PickUpObject();
         playerInput.Player.Teleport.performed += ctx => Teleport();
+        playerInput.Player.SwitchWeapon.performed += ctx => SwitchWeapon();
     }
 
     private void Update()
@@ -113,7 +124,7 @@ public class FirstPersonControls : MonoBehaviour
     {
         if (canTeleport)
         {
-            StartCoroutine(TeleportPlayer()); // Use Coroutine for teleportation
+            StartCoroutine(TeleportPlayer()); 
         }
     }
 
@@ -121,10 +132,10 @@ public class FirstPersonControls : MonoBehaviour
 
     private IEnumerator TeleportPlayer()
     {
-        characterController.enabled = false; // Disable CharacterController before teleporting
+        characterController.enabled = false; 
         transform.position = TeleportLocation.position;
-        yield return null; // Wait for one frame
-        characterController.enabled = true; // Re-enable CharacterController after teleporting
+        yield return null; 
+        characterController.enabled = true; 
         Debug.Log("Player teleported to " + TeleportLocation.position);
         ResetTeleport();
     }
@@ -178,42 +189,102 @@ public class FirstPersonControls : MonoBehaviour
     {
         if (heldObject != null)
         {
-            heldObject.GetComponent<Rigidbody>().isKinematic = false;
-            heldObject.transform.parent = null;
-            holdingGun = false;
-            weapon = null;
+            DropCurrentWeapon();
         }
 
         Ray ray = new Ray(playerCamera.position, playerCamera.forward);
         RaycastHit hit;
 
-        Debug.DrawRay(playerCamera.position, playerCamera.forward * pickUpRange, Color.red, 2f);
-
         if (Physics.Raycast(ray, out hit, pickUpRange))
         {
             if (hit.collider.CompareTag("PickUp") || hit.collider.CompareTag("Gun"))
             {
-                heldObject = hit.collider.gameObject;
-                heldObject.GetComponent<Rigidbody>().isKinematic = true;
-
-                heldObject.transform.position = holdPosition.position;
-                heldObject.transform.rotation = holdPosition.rotation;
-                heldObject.transform.parent = holdPosition;
+                GameObject objectToPickUp = hit.collider.gameObject;
+                Rigidbody objectRb = objectToPickUp.GetComponent<Rigidbody>();
 
                 if (hit.collider.CompareTag("Gun"))
                 {
-                    weapon = heldObject.GetComponent<Weapon>();
-                    if (weapon != null)
+                    Weapon newWeapon = objectToPickUp.GetComponent<Weapon>();
+                    if (newWeapon != null && weapons.Count < 2 && !weapons.Contains(newWeapon))
                     {
-                        holdingGun = true;
-                        Debug.Log("Weapon equipped!");
-                    }
-                    else
-                    {
-                        Debug.LogError("No Weapon script found on the gun!");
+                        weapons.Add(newWeapon);
+
+                        EquipWeapon(weapons.Count - 1);
+
+                        if (objectRb != null)
+                        {
+                            objectRb.isKinematic = true;
+                        }
+
+                        Transform holdPositionToUse = weapons.Count == 1 ? holdPosition : holdPositionSecondWeapon;
+                        objectToPickUp.transform.position = holdPositionToUse.position;
+                        objectToPickUp.transform.rotation = holdPositionToUse.rotation;
+                        objectToPickUp.transform.parent = holdPositionToUse;
+
+                        Debug.Log("Weapon picked up and equipped.");
                     }
                 }
             }
         }
     }
+
+
+
+
+
+
+    public void EquipWeapon(int index)
+    {
+        if (index >= 0 && index < weapons.Count)
+        {
+            for (int i = 0; i < weapons.Count; i++)
+            {
+                weapons[i].gameObject.SetActive(i == index); 
+            }
+
+            currentWeaponIndex = index;
+            weapon = weapons[currentWeaponIndex];
+
+            if (weapon != null)
+            {
+                Rigidbody weaponRb = weapon.GetComponent<Rigidbody>();
+                if (weaponRb != null)
+                {
+                    weaponRb.isKinematic = true; 
+                }
+
+                Debug.Log("Equipped weapon: " + weapon.gameObject.name);
+            }
+        }
+    }
+
+
+    public void DropCurrentWeapon()
+    {
+        if (weapon != null)
+        {
+            Rigidbody weaponRb = weapon.GetComponent<Rigidbody>();
+            if (weaponRb != null)
+            {
+                weaponRb.isKinematic = false;
+            }
+
+            weapon.transform.parent = null;
+            weapon.gameObject.SetActive(false); 
+            weapons.Remove(weapon);
+            weapon = null;
+
+            Debug.Log("Weapon dropped and removed from the list.");
+        }
+    }
+
+    public void SwitchWeapon()
+    {
+        if (weapons.Count > 0)
+        {
+            currentWeaponIndex = (currentWeaponIndex + 1) % weapons.Count;
+            EquipWeapon(currentWeaponIndex);
+        }
+    }
+
 }
