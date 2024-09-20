@@ -89,6 +89,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Read"",
+                    ""type"": ""Button"",
+                    ""id"": ""ae2cae7d-75d6-4629-ae20-11a03fe3152a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CloseNote"",
+                    ""type"": ""Button"",
+                    ""id"": ""9ad0d5ce-e247-4b16-9e0d-74034eb79521"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -344,6 +362,50 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""SwitchWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""52a75310-0035-4029-88c8-3a1e548340de"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Read"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e6592d38-bfff-4fa7-83e7-01bd9a383395"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Read"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4c004447-a472-4fce-ba7a-4f6db0a75cc5"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""CloseNote"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2b647687-7d3a-43a5-9754-32ed86e146b5"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""CloseNote"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -382,6 +444,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
         m_Player_Teleport = m_Player.FindAction("Teleport", throwIfNotFound: true);
         m_Player_SwitchWeapon = m_Player.FindAction("SwitchWeapon", throwIfNotFound: true);
+        m_Player_Read = m_Player.FindAction("Read", throwIfNotFound: true);
+        m_Player_CloseNote = m_Player.FindAction("CloseNote", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -450,6 +514,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_PickUp;
     private readonly InputAction m_Player_Teleport;
     private readonly InputAction m_Player_SwitchWeapon;
+    private readonly InputAction m_Player_Read;
+    private readonly InputAction m_Player_CloseNote;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -461,6 +527,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @PickUp => m_Wrapper.m_Player_PickUp;
         public InputAction @Teleport => m_Wrapper.m_Player_Teleport;
         public InputAction @SwitchWeapon => m_Wrapper.m_Player_SwitchWeapon;
+        public InputAction @Read => m_Wrapper.m_Player_Read;
+        public InputAction @CloseNote => m_Wrapper.m_Player_CloseNote;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -491,6 +559,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @SwitchWeapon.started += instance.OnSwitchWeapon;
             @SwitchWeapon.performed += instance.OnSwitchWeapon;
             @SwitchWeapon.canceled += instance.OnSwitchWeapon;
+            @Read.started += instance.OnRead;
+            @Read.performed += instance.OnRead;
+            @Read.canceled += instance.OnRead;
+            @CloseNote.started += instance.OnCloseNote;
+            @CloseNote.performed += instance.OnCloseNote;
+            @CloseNote.canceled += instance.OnCloseNote;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -516,6 +590,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @SwitchWeapon.started -= instance.OnSwitchWeapon;
             @SwitchWeapon.performed -= instance.OnSwitchWeapon;
             @SwitchWeapon.canceled -= instance.OnSwitchWeapon;
+            @Read.started -= instance.OnRead;
+            @Read.performed -= instance.OnRead;
+            @Read.canceled -= instance.OnRead;
+            @CloseNote.started -= instance.OnCloseNote;
+            @CloseNote.performed -= instance.OnCloseNote;
+            @CloseNote.canceled -= instance.OnCloseNote;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -560,5 +640,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnPickUp(InputAction.CallbackContext context);
         void OnTeleport(InputAction.CallbackContext context);
         void OnSwitchWeapon(InputAction.CallbackContext context);
+        void OnRead(InputAction.CallbackContext context);
+        void OnCloseNote(InputAction.CallbackContext context);
     }
 }
