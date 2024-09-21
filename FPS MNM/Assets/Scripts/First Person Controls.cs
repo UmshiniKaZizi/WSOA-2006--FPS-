@@ -62,7 +62,23 @@ public class FirstPersonControls : MonoBehaviour
     [Header("WEAPON SETTINGS")]
     public List<Weapon> weapons = new List<Weapon>(); 
     private int currentWeaponIndex = 0;
+    private void OnTriggerEnter(Collider other)
+    {
+        // Check if the player collided with an object tagged "IF"
+        if (other.CompareTag("IF"))
+        {
+            EndGame(); // Call the method to end the game
+        }
+    }
 
+    // Method to end the game
+    public void EndGame()
+    {
+        Debug.Log("Game Over: Player collided with 'IF' tagged object.");
+
+        Application.Quit();
+
+    }
 
     private void Awake()
     {
@@ -264,6 +280,7 @@ public class FirstPersonControls : MonoBehaviour
             }
         }
     }
+
 
 
     public void DropCurrentWeapon()
