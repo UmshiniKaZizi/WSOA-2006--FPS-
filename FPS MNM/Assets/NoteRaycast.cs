@@ -14,25 +14,25 @@ public class NoteRaycast : MonoBehaviour
     [SerializeField]
     private Image crosshair;
 
-    // Reference to the PlayerInput component
+    
     private PlayerInput playerInput;
 
     private InputAction readNoteAction;
 
     private void Awake()
     {
-        // Get the PlayerInput component (assuming it's on the same GameObject or you can reference it if needed)
+        
         playerInput = GetComponent<PlayerInput>();
 
-        // Programmatically get the "Read" action from the action map
+        
         readNoteAction = playerInput.actions["Read"];
     }
 
     private void OnEnable()
     {
-        // Enable the read action
+        
         readNoteAction.Enable();
-        readNoteAction.performed += OnReadNotePerformed; // Subscribe to the action
+        readNoteAction.performed += OnReadNotePerformed; 
     }
 
     private void OnDisable()
@@ -73,7 +73,7 @@ public class NoteRaycast : MonoBehaviour
     {
         if (noteController != null)
         {
-            noteController.ShowNote(); // Show the note if the action is performed
+            noteController.ShowNote(); 
         }
     }
 

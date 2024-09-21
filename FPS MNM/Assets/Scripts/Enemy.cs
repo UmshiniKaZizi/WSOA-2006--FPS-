@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
 
     public float health = 100f;
     public float pushForce = 5f;
-    public float pushDuration = 0.5f; // How long the push lasts
+    public float pushDuration = 0.5f; // How long the push lastsz
     public EnemySpawner spawner;
 
     private bool isBeingPushed = false;

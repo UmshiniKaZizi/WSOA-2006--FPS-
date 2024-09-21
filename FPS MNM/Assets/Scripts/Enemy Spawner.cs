@@ -9,8 +9,9 @@ public class EnemySpawner : MonoBehaviour
     public int MaxEnemies = 5;
     public Transform[] SpawnPoints;
     public GameObject spawnPointPrefab;
-    private int spawnCount = 0; 
+    private int spawnCount = 0;
     public int CurrentEnemyCount = 0;
+    private bool spawningEnabled = true; // Flag to control spawning
 
     void Start()
     {
@@ -20,17 +21,17 @@ public class EnemySpawner : MonoBehaviour
             SpawnPoints[i] = spawnPoint;
         }
         StartCoroutine(SpawnEnemies());
-        
-        
     }
+
     public void QuitGame()
     {
         Application.Quit();
     }
 
+    // Coroutine to spawn enemies based on the flag
     public IEnumerator SpawnEnemies()
     {
-        while (true)
+        while (spawningEnabled) // Spawn only if spawningEnabled is true
         {
             yield return new WaitForSeconds(SpawnInterval);
 
@@ -41,19 +42,30 @@ public class EnemySpawner : MonoBehaviour
                 newEnemy.GetComponent<Enemy>().spawner = this;
                 CurrentEnemyCount++;
                 spawnCount++;
-                if (spawnCount ==15)
+
+                if (spawnCount == 15)
                 {
-                    QuitGame();
+                    //QuitGame();
+                    StopSpawning(); 
                 }
             }
         }
     }
 
+    // Method to call when an enemy is destroyed
     public void EnemyDestroyed()
     {
         CurrentEnemyCount--;
     }
 
+    // Method to stop enemy spawning
+    public void StopSpawning()
+    {
+        spawningEnabled = false;
+        Debug.Log("Spawning has been stopped.");
+    }
+
+    // Method to reset enemy health
     public void ResetEnemies()
     {
         Enemy[] enemies = FindObjectsOfType<Enemy>();
@@ -65,6 +77,6 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 }
