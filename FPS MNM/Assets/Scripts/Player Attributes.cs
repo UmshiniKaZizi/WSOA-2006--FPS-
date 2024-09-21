@@ -1,20 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class PlayerAttributes : MonoBehaviour
 {
     public float MaxHealth = 100f;
     public float CurrentHealth;
-    // Start is called before the first frame update
+
+    [Header("UI Elements")]
+    public Slider healthSlider; // Assign in the inspector
+
     void Start()
     {
         CurrentHealth = MaxHealth;
+        healthSlider.maxValue = MaxHealth;
+        healthSlider.value = CurrentHealth;
     }
-    void TakeDamage(float damage)
+
+    public void TakeDamage(float damage)
     {
         CurrentHealth -= damage;
+        healthSlider.value = CurrentHealth; // Update the health slider
+
         if (CurrentHealth <= 0)
         {
             Die();
@@ -23,11 +29,7 @@ public class PlayerAttributes : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("The players is dead");
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log("The player is dead");
+        // Implement death logic (e.g., reload scene, show game over screen, etc.)
     }
 }

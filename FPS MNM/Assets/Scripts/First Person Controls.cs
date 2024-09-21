@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class FirstPersonControls : MonoBehaviour
 {
@@ -8,9 +9,17 @@ public class FirstPersonControls : MonoBehaviour
     [Space(5)]
     public float moveSpeed;
     public float lookSpeed;
+    public float multiply;
     public float gravity = -9.81f;
     public float jumpHeight = 1.0f;
     public Transform playerCamera;
+
+    [Header("LOOK SETTINGS")]
+    public float mouseLookSpeed = 0.15f; // Mouse look speed
+    public float gamepadLookSpeed = 1.0f; // Gamepad look speed
+    private bool isUsingGamepad = false; // Track if the gamepad is being used
+
+
 
     private Vector2 moveInput;
     private Vector2 lookInput;
@@ -71,26 +80,23 @@ public class FirstPersonControls : MonoBehaviour
         };
         playerInput.Player.Movement.canceled += ctx => moveInput = Vector2.zero;
 
-        playerInput.Player.Look.performed += ctx => lookInput = ctx.ReadValue<Vector2>();
+        playerInput.Player.Look.performed += ctx => {
+            lookInput = ctx.ReadValue<Vector2>();
+            
+            isUsingGamepad = ctx.control.device is Gamepad; 
+        };
         playerInput.Player.Look.canceled += ctx => lookInput = Vector2.zero;
 
         playerInput.Player.Jump.performed += ctx => Jump();
-
         playerInput.Player.Shoot.performed += ctx => {
-            if (weapon != null)
-            {
-                weapon.Shoot();
-            }
-            else
-            {
-                Debug.LogError("No weapon equipped!");
-            }
+            if (weapon != null) weapon.Shoot();
+            else Debug.LogError("No weapon equipped!");
         };
-
         playerInput.Player.PickUp.performed += ctx => PickUpObject();
         playerInput.Player.Teleport.performed += ctx => Teleport();
         playerInput.Player.SwitchWeapon.performed += ctx => SwitchWeapon();
     }
+
 
     private void Update()
     {
@@ -155,8 +161,8 @@ public class FirstPersonControls : MonoBehaviour
 
     public void LookAround()
     {
-        float LookX = lookInput.x * lookSpeed;
-        float LookY = lookInput.y * lookSpeed;
+        float LookX = lookInput.x * (isUsingGamepad ? gamepadLookSpeed : mouseLookSpeed);
+        float LookY = lookInput.y * (isUsingGamepad ? gamepadLookSpeed : mouseLookSpeed);
 
         transform.Rotate(0, LookX, 0);
 
@@ -165,6 +171,7 @@ public class FirstPersonControls : MonoBehaviour
 
         playerCamera.localEulerAngles = new Vector3(verticalLookRotation, 0, 0);
     }
+
 
     public void ApplyGravity()
     {
