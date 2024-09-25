@@ -6,7 +6,7 @@ public class NoteRaycast : MonoBehaviour
 {
     [Header("Raycast Features")]
     [SerializeField]
-    private float raylength = 5f;
+    private float raylength = 50f;
     private Camera camera;
     private NoteController noteController;
 
@@ -14,32 +14,39 @@ public class NoteRaycast : MonoBehaviour
     [SerializeField]
     private Image crosshair;
 
-    
-    private PlayerInput playerInput;
+    [Header("Input Action Asset")]
+    [SerializeField]
+    private InputActionAsset inputActionAsset; // Drag your Input Action Asset here
 
     private InputAction readNoteAction;
 
     private void Awake()
     {
-        
-        playerInput = GetComponent<PlayerInput>();
+        // Get the "Read" action from the action map in the InputActionAsset
+        readNoteAction = inputActionAsset.FindActionMap("Player").FindAction("Read");
 
-        
-        readNoteAction = playerInput.actions["Read"];
+        if (readNoteAction == null)
+        {
+            Debug.LogError("Read action not found in the Player action map.");
+        }
     }
 
     private void OnEnable()
     {
-        
-        readNoteAction.Enable();
-        readNoteAction.performed += OnReadNotePerformed; 
+        if (readNoteAction != null)
+        {
+            readNoteAction.Enable();
+            readNoteAction.performed += OnReadNotePerformed;
+        }
     }
 
     private void OnDisable()
     {
-        // Disable the read action
-        readNoteAction.Disable();
-        readNoteAction.performed -= OnReadNotePerformed; // Unsubscribe from the action
+        if (readNoteAction != null)
+        {
+            readNoteAction.Disable();
+            readNoteAction.performed -= OnReadNotePerformed;
+        }
     }
 
     void Start()
@@ -49,8 +56,8 @@ public class NoteRaycast : MonoBehaviour
 
     void Update()
     {
-        // Perform raycasting to detect notes
-        if (Physics.Raycast(camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f)), transform.forward, out RaycastHit hit, raylength))
+        Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+        if (Physics.Raycast(ray, out RaycastHit hit, raylength))
         {
             var readableItem = hit.collider.GetComponent<NoteController>();
             if (readableItem != null)
@@ -73,7 +80,7 @@ public class NoteRaycast : MonoBehaviour
     {
         if (noteController != null)
         {
-            noteController.ShowNote(); 
+            noteController.ShowNote();
         }
     }
 

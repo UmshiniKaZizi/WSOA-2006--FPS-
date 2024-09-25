@@ -174,7 +174,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -10880,7 +10880,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 953b998cfa8cf2c42b30ca7da56da64a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.402456
+      value: 42.89
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 953b998cfa8cf2c42b30ca7da56da64a,
         type: 3}
@@ -10931,6 +10931,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SuspectSculpt
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 953b998cfa8cf2c42b30ca7da56da64a,
+        type: 3}
+      propertyPath: m_TagString
+      value: IF
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

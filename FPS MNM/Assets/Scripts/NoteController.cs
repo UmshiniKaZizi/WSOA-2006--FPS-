@@ -20,10 +20,12 @@ public class NoteController : MonoBehaviour
 
     // Reference to the Input Action Asset
     [SerializeField]
-    private InputActionAsset inputActionAsset; // Drag your Input Action Asset here
+    private InputActionAsset inputActionAsset;
 
     private InputAction closeNoteAction;
     private InputAction readNoteAction;
+
+    private static NoteController currentlyOpenNote;
 
     private void Awake()
     {
@@ -62,11 +64,20 @@ public class NoteController : MonoBehaviour
 
     public void ShowNote()
     {
+        // Close currently open note, if there is one
+        if (currentlyOpenNote != null && currentlyOpenNote != this)
+        {
+            currentlyOpenNote.DisableNote();
+        }
+
         // Show the note UI
         NoteTextGO.text = NoteText;
         noteCanvas.SetActive(true);
         open.Invoke();
         isNoteOpen = true;
+
+        // Set this note as the currently open note
+        currentlyOpenNote = this;
 
         // Disable player movement and looking around
         DisablePlayerMovement(true);
@@ -85,6 +96,12 @@ public class NoteController : MonoBehaviour
         // Hide the note UI
         noteCanvas.SetActive(false);
         isNoteOpen = false;
+
+        // If this note was the open one, clear the currently open note reference
+        if (currentlyOpenNote == this)
+        {
+            currentlyOpenNote = null;
+        }
 
         // Re-enable player movement and looking around
         DisablePlayerMovement(false);
