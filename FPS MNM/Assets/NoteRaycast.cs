@@ -8,7 +8,7 @@ public class NoteRaycast : MonoBehaviour
     [SerializeField]
     private float raylength = 50f;
     private Camera camera;
-    private NoteController noteController;
+    private InteractableObject interactableObject;
 
     [Header("Crosshair")]
     [SerializeField]
@@ -59,11 +59,12 @@ public class NoteRaycast : MonoBehaviour
         Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
         if (Physics.Raycast(ray, out RaycastHit hit, raylength))
         {
-            var readableItem = hit.collider.GetComponent<NoteController>();
-            if (readableItem != null)
+            var interactable = hit.collider.GetComponent<InteractableObject>();
+            if (interactable != null)
             {
-                noteController = readableItem;
+                interactableObject = interactable;
                 HighlightCrosshair(true);
+                interactable.ShowInteractionUI(); // Show the interaction UI
             }
             else
             {
@@ -78,18 +79,19 @@ public class NoteRaycast : MonoBehaviour
 
     private void OnReadNotePerformed(InputAction.CallbackContext context)
     {
-        if (noteController != null)
+        if (interactableObject != null)
         {
-            noteController.ShowNote();
+            interactableObject.Interact(); // Call the interact method
         }
     }
 
     void ClearNote()
     {
-        if (noteController != null)
+        if (interactableObject != null)
         {
             HighlightCrosshair(false);
-            noteController = null;
+            interactableObject.HideInteractionUI(); // Hide the interaction UI
+            interactableObject = null;
         }
     }
 

@@ -5550,6 +5550,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   raylength: 5
   crosshair: {fileID: 1222155899}
+  inputActionAsset: {fileID: -944628639613478452, guid: c4469f4ead0f2be44ae723c1adfdd7af,
+    type: 3}
 --- !u!1 &220156042
 GameObject:
   m_ObjectHideFlags: 0
@@ -5694,7 +5696,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f77d7a05456fc0041b3a56dab3cafea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  note: {fileID: 2078493501}
+  interactionCanvas: {fileID: 0}
+  interactionText: {fileID: 0}
+  interactionMessage: 
 --- !u!1 &248990361
 GameObject:
   m_ObjectHideFlags: 0
@@ -11368,7 +11372,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f77d7a05456fc0041b3a56dab3cafea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  note: {fileID: 263472439}
+  interactionCanvas: {fileID: 0}
+  interactionText: {fileID: 0}
+  interactionMessage: 
 --- !u!1 &680013267 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5241908201187717399, guid: 1634f5b3ae0d7934ead6f5d91a48d7bc,
@@ -11766,7 +11772,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f77d7a05456fc0041b3a56dab3cafea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  note: {fileID: 1368517527}
+  interactionCanvas: {fileID: 0}
+  interactionText: {fileID: 0}
+  interactionMessage: 
 --- !u!1 &909216212 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3996001955324183369, guid: 1634f5b3ae0d7934ead6f5d91a48d7bc,
@@ -22470,7 +22478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d40e32bc0e25bf48a9ca31c8298d79b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 20
   lookSpeed: 1
   multiply: 0
   gravity: -9.81

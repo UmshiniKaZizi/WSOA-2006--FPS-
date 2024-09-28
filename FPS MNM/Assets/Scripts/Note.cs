@@ -1,24 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Note : MonoBehaviour
+public class InteractableObject : MonoBehaviour
 {
-    public GameObject note;
-    // Start is called before the first frame update
-    void Start()
+    [Header("UI Elements")]
+    [SerializeField]
+    private GameObject interactionCanvas; // Canvas to display interaction info
+    [SerializeField]
+    private Text interactionText; // Text component to display the object's info
+
+    [Header("Interaction Info")]
+    [SerializeField]
+    [TextArea]
+    private string interactionMessage; // Message to display when interacted with
+
+    private void Start()
     {
-        note.SetActive(false);
+        interactionCanvas.SetActive(false); // Hide the interaction UI at the start
     }
 
-    public void OnMouseOver()
+    public void ShowInteractionUI()
     {
-        note.SetActive(true);
+        interactionText.text = interactionMessage;
+        interactionCanvas.SetActive(true); // Show interaction UI
     }
 
-    public void OnMouseExit()
+    public void HideInteractionUI()
     {
-        note.SetActive(false);
+        interactionCanvas.SetActive(false); // Hide interaction UI
     }
 
+    // Call this function to perform the interaction (e.g., pick up the object)
+    public void Interact()
+    {
+        // Logic for interacting with the object
+        Debug.Log($"Interacted with: {gameObject.name}");
+        // Implement further functionality, like picking up the object
+    }
 }
