@@ -3,7 +3,11 @@ guid: b1af1468f0681aa46bba0b6f4aa66e5a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - noteCanvas: {instanceID: 0}
+  - NoteTextGO: {instanceID: 0}
+  - inputActionAsset: {fileID: -944628639613478452, guid: c4469f4ead0f2be44ae723c1adfdd7af,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
