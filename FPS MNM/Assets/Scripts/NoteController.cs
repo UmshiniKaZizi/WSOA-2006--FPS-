@@ -23,6 +23,40 @@ public class NoteController : MonoBehaviour
     [SerializeField]
     private InputActionAsset inputActionAsset;
 
+    private InputAction readNoteAction;  // Define a new action for reading the note
+
+    private void Awake()
+    {
+        // Find and cache the "ReadNote" action from the "Player" action map
+        readNoteAction = inputActionAsset.FindActionMap("Player").FindAction("Read");
+    }
+
+    private void OnEnable()
+    {
+        // Enable "CloseNote" and "ReadNote" actions when the component is active
+        inputActionAsset.FindActionMap("Player").FindAction("CloseNote").Enable();
+        inputActionAsset.FindActionMap("Player").FindAction("CloseNote").performed += OnClosePerformed;
+
+        readNoteAction.Enable();  // Enable the "ReadNote" action
+        readNoteAction.performed += OnReadNotePerformed;  // Subscribe to the ReadNote action event
+    }
+
+    private void OnDisable()
+    {
+        // Disable "CloseNote" and "ReadNote" actions when the component is inactive
+        inputActionAsset.FindActionMap("Player").FindAction("CloseNote").Disable();
+        inputActionAsset.FindActionMap("Player").FindAction("CloseNote").performed -= OnClosePerformed;
+
+        readNoteAction.Disable();
+        readNoteAction.performed -= OnReadNotePerformed;
+    }
+
+    private void OnReadNotePerformed(InputAction.CallbackContext context)
+    {
+        // When the "ReadNote" button is pressed, show the note
+        ShowNote();
+    }
+
     public void ShowNote()
     {
         // Close the previously open note, if any
@@ -78,17 +112,5 @@ public class NoteController : MonoBehaviour
         {
             DisableNote();
         }
-    }
-
-    private void OnEnable()
-    {
-        inputActionAsset.FindActionMap("Player").FindAction("CloseNote").Enable();
-        inputActionAsset.FindActionMap("Player").FindAction("CloseNote").performed += OnClosePerformed;
-    }
-
-    private void OnDisable()
-    {
-        inputActionAsset.FindActionMap("Player").FindAction("CloseNote").Disable();
-        inputActionAsset.FindActionMap("Player").FindAction("CloseNote").performed -= OnClosePerformed;
     }
 }

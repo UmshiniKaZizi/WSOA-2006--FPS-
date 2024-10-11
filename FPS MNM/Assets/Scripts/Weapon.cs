@@ -6,13 +6,21 @@ public class Weapon : MonoBehaviour
     public float Range = 100f;
     public float Force = 30f;
     public FirstPersonControls FirstPersonControls;
-    public Camera playerCamera; // Add this line
+    public Camera playerCamera;
     public ParticleSystem muzzleFlash;
     public GameObject BulletImpactEffect_1;
     public GameObject BulletImpactEffect_2;
     public Transform CanvasTransform;
-   
-   
+    public bool isSword;
+    public Animator swordAnimator;
+
+    void Start()
+    {
+        if (swordAnimator == null)
+        {
+            swordAnimator = GetComponent<Animator>();
+        }
+    }
 
     public void Shoot()
     {
@@ -28,12 +36,19 @@ public class Weapon : MonoBehaviour
             return;
         }
 
+        if (isSword)
+        {
+            // Play sword animation
+            swordAnimator.SetTrigger("SWING");
+            Debug.Log("Sword swing animation triggered");
+            return;
+        }
+
         RaycastHit hit;
         Vector3 rayDirection = playerCamera.transform.forward;
-        
+
         bool hitDetected = Physics.Raycast(playerCamera.transform.position, rayDirection, out hit, Range);
 
-       
         Vector3 impactPoint = hitDetected ? hit.point : playerCamera.transform.position + rayDirection * Range;
 
         if (!hitDetected)
@@ -55,13 +70,7 @@ public class Weapon : MonoBehaviour
             GameObject BulletImpact_1 = Instantiate(BulletImpactEffect_1, hit.point, Quaternion.LookRotation(hit.normal));
             GameObject BulletImpact_2 = Instantiate(BulletImpactEffect_2, hit.point, Quaternion.LookRotation(hit.normal));
             Destroy(BulletImpact_1, 2f);
-            Destroy(BulletImpact_2,2f);
-
+            Destroy(BulletImpact_2, 2f);
         }
-
-       
-
-
     }
-
 }
