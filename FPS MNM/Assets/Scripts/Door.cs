@@ -13,23 +13,47 @@ public class Door : MonoBehaviour
 
     void Start()
     {
-        closedRotation = hinge.rotation; // Set initial rotation as closed
-        openRotation = closedRotation * Quaternion.Euler(0, openAngle, 0); // Calculate open rotation
+        if (hinge == null)
+        {
+            hinge = transform;  // Fallback to the door's own Transform if not assigned
+        }
+
+        closedRotation = hinge.rotation;
+        openRotation = Quaternion.Euler(closedRotation.eulerAngles.x, closedRotation.eulerAngles.y + openAngle, closedRotation.eulerAngles.z);
+
+        Debug.Log("Initial Hinge Rotation: " + closedRotation.eulerAngles);
+        Debug.Log("Target Open Rotation: " + openRotation.eulerAngles);
     }
+
 
     public void ToggleDoor()
     {
         isOpen = !isOpen;
-        StopAllCoroutines(); // Stop previous animations
-        StartCoroutine(AnimateDoor(isOpen ? openRotation : closedRotation));
+        StopAllCoroutines();
+
+        // Debug log to verify correct target rotation
+        Debug.Log("Toggling Door. New State: " + (isOpen ? "Open" : "Closed"));
+        Debug.Log("Target Rotation Should Be: " + (isOpen ? openRotation.eulerAngles : closedRotation.eulerAngles));
+
+        StartCoroutine(AnimateDoor(isOpen ? openRotation : closedRotation));  // Ensure correct rotation is passed here
     }
+
 
     private IEnumerator AnimateDoor(Quaternion targetRotation)
     {
-        while (Quaternion.Angle(hinge.rotation, targetRotation) > 0.01f)
+        Debug.Log("Starting Animation. Initial Hinge Rotation: " + hinge.rotation.eulerAngles);
+        Debug.Log("Target Rotation: " + targetRotation.eulerAngles);
+
+        while (Quaternion.Angle(hinge.rotation, targetRotation) > 0.1f)
         {
             hinge.rotation = Quaternion.Slerp(hinge.rotation, targetRotation, Time.deltaTime * openSpeed);
+            Debug.Log("Animating Door. Current Hinge Rotation: " + hinge.rotation.eulerAngles);
             yield return null;
         }
+
+        // Ensure final rotation is set correctly
+        hinge.rotation = targetRotation;
+        Debug.Log("Door Animation Completed. Final Hinge Rotation: " + hinge.rotation.eulerAngles);
     }
+
 }

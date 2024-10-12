@@ -24,36 +24,18 @@ public class NoteController : MonoBehaviour
     private InputActionAsset inputActionAsset;
 
     private InputAction readNoteAction;  // Define a new action for reading the note
-    private InputAction closeNoteAction;
 
     private void Awake()
     {
-        if (inputActionAsset == null)
-        {
-            Debug.LogError("InputActionAsset not assigned in the Inspector.");
-            return;
-        }
-
-        // Find and cache the "Read" and "CloseNote" actions from the "Player" action map
-        readNoteAction = inputActionAsset.FindActionMap("Player")?.FindAction("Read");
-        closeNoteAction = inputActionAsset.FindActionMap("Player")?.FindAction("CloseNote");
-
-        if (readNoteAction == null || closeNoteAction == null)
-        {
-            Debug.LogError("Read or CloseNote actions not found. Check the Input Action Map setup.");
-        }
+        // Find and cache the "ReadNote" action from the "Player" action map
+        readNoteAction = inputActionAsset.FindActionMap("Player").FindAction("Read");
     }
 
     private void OnEnable()
     {
-        if (inputActionAsset == null || readNoteAction == null || closeNoteAction == null)
-        {
-            return; // Skip if any input actions are null
-        }
-
         // Enable "CloseNote" and "ReadNote" actions when the component is active
-        closeNoteAction.Enable();
-        closeNoteAction.performed += OnClosePerformed;
+        inputActionAsset.FindActionMap("Player").FindAction("CloseNote").Enable();
+        inputActionAsset.FindActionMap("Player").FindAction("CloseNote").performed += OnClosePerformed;
 
         readNoteAction.Enable();  // Enable the "ReadNote" action
         readNoteAction.performed += OnReadNotePerformed;  // Subscribe to the ReadNote action event
@@ -61,14 +43,9 @@ public class NoteController : MonoBehaviour
 
     private void OnDisable()
     {
-        if (inputActionAsset == null || readNoteAction == null || closeNoteAction == null)
-        {
-            return; // Skip if any input actions are null
-        }
-
         // Disable "CloseNote" and "ReadNote" actions when the component is inactive
-        closeNoteAction.Disable();
-        closeNoteAction.performed -= OnClosePerformed;
+        inputActionAsset.FindActionMap("Player").FindAction("CloseNote").Disable();
+        inputActionAsset.FindActionMap("Player").FindAction("CloseNote").performed -= OnClosePerformed;
 
         readNoteAction.Disable();
         readNoteAction.performed -= OnReadNotePerformed;
@@ -103,7 +80,7 @@ public class NoteController : MonoBehaviour
         DisablePlayerMovement(true);
     }
 
-    public void DisableNote()
+    private void DisableNote()
     {
         // Hide the note canvas
         noteCanvas.SetActive(false);
@@ -115,43 +92,25 @@ public class NoteController : MonoBehaviour
 
     private void DisablePlayerMovement(bool disable)
     {
-        if (inputActionAsset == null) return;
-
-        var playerMap = inputActionAsset.FindActionMap("Player");
-        if (playerMap != null)
+        if (disable)
         {
-            var movementAction = playerMap.FindAction("Movement");
-            var lookAction = playerMap.FindAction("Look");
-
-            if (movementAction != null)
-            {
-                if (disable)
-                    movementAction.Disable();
-                else
-                    movementAction.Enable();
-            }
-
-            if (lookAction != null)
-            {
-                if (disable)
-                    lookAction.Disable();
-                else
-                    lookAction.Enable();
-            }
+            // Disable movement and looking around
+            inputActionAsset.FindActionMap("Player").FindAction("Movement").Disable();
+            inputActionAsset.FindActionMap("Player").FindAction("Look").Disable();
+        }
+        else
+        {
+            // Re-enable movement and looking around
+            inputActionAsset.FindActionMap("Player").FindAction("Movement").Enable();
+            inputActionAsset.FindActionMap("Player").FindAction("Look").Enable();
         }
     }
 
-
-    private void OnClosePerformed(InputAction.CallbackContext context)
+    public void OnClosePerformed(InputAction.CallbackContext context)
     {
         if (isNoteOpen)
         {
             DisableNote();
         }
-    }
-
-    public bool IsNoteOpen()
-    {
-        return isNoteOpen;
     }
 }

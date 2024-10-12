@@ -8,6 +8,9 @@ TagManager:
   - Bullet
   - PickUp
   - IF
+  - Door
+  - AmmoPack
+  - Note
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - UI
   - Ground
   - Player
-  - 
+  - Door
   - 
   - 
   - 

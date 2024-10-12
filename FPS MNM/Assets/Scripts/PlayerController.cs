@@ -99,9 +99,9 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (noteController.IsNoteOpen())
+        //if (noteController.IsNoteOpen())
         {
-            noteController.DisableNote(); // Close the note if it's open
+           // noteController.DisableNote(); // Close the note if it's open
         }
     }
 }
