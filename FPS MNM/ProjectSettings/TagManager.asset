@@ -15,7 +15,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - SLASH
   - Water
   - UI
   - Ground
@@ -47,4 +47,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: E2
+    uniqueID: 1991909287
+    locked: 0
+  - name: New Layer 2
+    uniqueID: 4054135743
+    locked: 0
+  - name: 0
+    uniqueID: 1386544099
     locked: 0
