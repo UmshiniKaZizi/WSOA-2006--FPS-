@@ -24,6 +24,7 @@ public class NoteController : MonoBehaviour
     private InputActionAsset inputActionAsset;
 
     private InputAction readNoteAction;  // Define a new action for reading the note
+    private PlayerController playerController;
 
     private void Awake()
     {
@@ -33,28 +34,44 @@ public class NoteController : MonoBehaviour
 
     private void OnEnable()
     {
-        // Enable "CloseNote" and "ReadNote" actions when the component is active
+        // Enable "CloseNote" actions when the component is active
         inputActionAsset.FindActionMap("Player").FindAction("CloseNote").Enable();
         inputActionAsset.FindActionMap("Player").FindAction("CloseNote").performed += OnClosePerformed;
-
-        readNoteAction.Enable();  // Enable the "ReadNote" action
-        readNoteAction.performed += OnReadNotePerformed;  // Subscribe to the ReadNote action event
     }
 
     private void OnDisable()
     {
-        // Disable "CloseNote" and "ReadNote" actions when the component is inactive
+        // Disable "CloseNote" actions when the component is inactive
         inputActionAsset.FindActionMap("Player").FindAction("CloseNote").Disable();
         inputActionAsset.FindActionMap("Player").FindAction("CloseNote").performed -= OnClosePerformed;
 
-        readNoteAction.Disable();
-        readNoteAction.performed -= OnReadNotePerformed;
+        if (playerController != null)
+        {
+            playerController.SetCanReadNote(false);
+        }
     }
 
-    private void OnReadNotePerformed(InputAction.CallbackContext context)
+    private void OnTriggerEnter(Collider other)
     {
-        // When the "ReadNote" button is pressed, show the note
-        ShowNote();
+        if (other.CompareTag("Player"))
+        {
+            playerController = other.GetComponent<PlayerController>();
+            if (playerController != null)
+            {
+                Debug.Log("Player is in range to read note.");
+                playerController.SetCanReadNote(true);  // Enable the read action when the player is in range
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player") && playerController != null)
+        {
+            Debug.Log("Player left the range of the note.");
+            playerController.SetCanReadNote(false);  // Disable the read action when the player leaves range
+            playerController = null;
+        }
     }
 
     public void ShowNote()
@@ -102,7 +119,7 @@ public class NoteController : MonoBehaviour
         {
             // Re-enable movement and looking around
             inputActionAsset.FindActionMap("Player").FindAction("Movement").Enable();
-            inputActionAsset.FindActionMap("Player").FindAction("Look").Enable();
+            inputActionAsset.FindAction("Look").Enable();
         }
     }
 

@@ -3,17 +3,17 @@ using UnityEngine;
 public class KeypadButton : MonoBehaviour
 {
     [Header("Button Settings")]
-    [SerializeField] private string buttonValue;  // The value this button represents (0-9, Enter, Clear)
-    [SerializeField] private KeypadController keypadController;  // Reference to the KeypadController
+    [SerializeField] private string buttonValue; 
+    [SerializeField] private KeypadController keypadController;  
 
     private Vector3 originalPosition;
     private Color originalColor;
     private Renderer buttonRenderer;
-    private float animationDuration = 0.2f;  // Duration for the button press animation
+    private float animationDuration = 0.2f;  
 
     private void Start()
     {
-        // Store the original position and color of the button
+        
         originalPosition = transform.localPosition;
         buttonRenderer = GetComponent<Renderer>();
 
@@ -25,10 +25,10 @@ public class KeypadButton : MonoBehaviour
 
     private void OnMouseDown()
     {
-        // Start the button press animation
+        
         StartCoroutine(AnimateButtonPress());
 
-        // Handle the button logic (Add digit, enter code, or clear code)
+       
         if (keypadController == null)
         {
             Debug.LogError("KeypadController reference is missing. Please assign it in the Inspector.");
@@ -52,11 +52,11 @@ public class KeypadButton : MonoBehaviour
 
     private System.Collections.IEnumerator AnimateButtonPress()
     {
-        // Animate the button moving inward and turning green
+       
         float elapsedTime = 0f;
 
-        Vector3 pressedPosition = originalPosition + new Vector3(0, -0.05f, 0);  // Move slightly downwards
-        Color pressedColor = Color.green;  // Color when pressed
+        Vector3 pressedPosition = originalPosition + new Vector3(0, -0.05f, 0); 
+        Color pressedColor = Color.green;  
 
         while (elapsedTime < animationDuration / 2)
         {
@@ -70,17 +70,17 @@ public class KeypadButton : MonoBehaviour
             yield return null;
         }
 
-        // Ensure the button reaches the pressed state
+        
         transform.localPosition = pressedPosition;
         if (buttonRenderer != null)
         {
             buttonRenderer.material.color = pressedColor;
         }
 
-        // Wait for a short duration before moving back
+       
         yield return new WaitForSeconds(0.1f);
 
-        // Animate the button moving back to the original position and color
+        
         elapsedTime = 0f;
 
         while (elapsedTime < animationDuration / 2)
@@ -95,7 +95,7 @@ public class KeypadButton : MonoBehaviour
             yield return null;
         }
 
-        // Ensure the button returns to the original state
+       
         transform.localPosition = originalPosition;
         if (buttonRenderer != null)
         {

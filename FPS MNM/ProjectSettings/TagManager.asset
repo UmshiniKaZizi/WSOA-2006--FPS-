@@ -11,6 +11,7 @@ TagManager:
   - Door
   - AmmoPack
   - Note
+  - Key
   layers:
   - Default
   - TransparentFX

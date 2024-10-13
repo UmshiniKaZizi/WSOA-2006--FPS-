@@ -5,36 +5,35 @@ public class InteractableObject : MonoBehaviour
 {
     [Header("UI Elements")]
     [SerializeField]
-    private GameObject interactionCanvas; // Canvas to display interaction info
+    private GameObject interactionCanvas; 
     [SerializeField]
-    private Text interactionText; // Text component to display the object's info
+    private Text interactionText; 
 
     [Header("Interaction Info")]
     [SerializeField]
     [TextArea]
-    private string interactionMessage; // Message to display when interacted with
+    private string interactionMessage; 
 
     private void Start()
     {
-        interactionCanvas.SetActive(false); // Hide the interaction UI at the start
+        interactionCanvas.SetActive(false); 
     }
 
     public void ShowInteractionUI()
     {
         interactionText.text = interactionMessage;
-        interactionCanvas.SetActive(true); // Show interaction UI
+        interactionCanvas.SetActive(true); 
     }
 
     public void HideInteractionUI()
     {
-        interactionCanvas.SetActive(false); // Hide interaction UI
+        interactionCanvas.SetActive(false); 
     }
 
-    // Call this function to perform the interaction (e.g., pick up the object)
     public void Interact()
     {
-        // Logic for interacting with the object
+        
         Debug.Log($"Interacted with: {gameObject.name}");
-        // Implement further functionality, like picking up the object
+        
     }
 }
