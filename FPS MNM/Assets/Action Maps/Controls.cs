@@ -107,6 +107,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""21f0eef9-688d-46ba-aa23-837da738f718"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -387,6 +396,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""ef92dae1-59b6-4671-8cdf-0c5c61aed3e9"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""4c004447-a472-4fce-ba7a-4f6db0a75cc5"",
                     ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
@@ -446,6 +466,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_SwitchWeapon = m_Player.FindAction("SwitchWeapon", throwIfNotFound: true);
         m_Player_Read = m_Player.FindAction("Read", throwIfNotFound: true);
         m_Player_CloseNote = m_Player.FindAction("CloseNote", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -516,6 +537,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SwitchWeapon;
     private readonly InputAction m_Player_Read;
     private readonly InputAction m_Player_CloseNote;
+    private readonly InputAction m_Player_Interact;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -529,6 +551,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @SwitchWeapon => m_Wrapper.m_Player_SwitchWeapon;
         public InputAction @Read => m_Wrapper.m_Player_Read;
         public InputAction @CloseNote => m_Wrapper.m_Player_CloseNote;
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -565,6 +588,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @CloseNote.started += instance.OnCloseNote;
             @CloseNote.performed += instance.OnCloseNote;
             @CloseNote.canceled += instance.OnCloseNote;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -596,6 +622,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @CloseNote.started -= instance.OnCloseNote;
             @CloseNote.performed -= instance.OnCloseNote;
             @CloseNote.canceled -= instance.OnCloseNote;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -642,5 +671,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnSwitchWeapon(InputAction.CallbackContext context);
         void OnRead(InputAction.CallbackContext context);
         void OnCloseNote(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

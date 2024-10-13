@@ -11,7 +11,6 @@ public class Weapon : MonoBehaviour
     public ParticleSystem muzzleFlash;
     public GameObject BulletImpactEffect_1;
     public GameObject BulletImpactEffect_2;
-<<<<<<< HEAD
 
     public int maxBullets = 30; // Maximum bullets in a full magazine
     public int currentBullets; // Current bullets remaining in the magazine
@@ -24,18 +23,6 @@ public class Weapon : MonoBehaviour
 
         // Update the ammo display at the beginning
         UpdateAmmoDisplay();
-=======
-    public Transform CanvasTransform;
-    public bool isSword;
-    public Animator swordAnimator;
-
-    void Start()
-    {
-        if (swordAnimator == null)
-        {
-            swordAnimator = GetComponent<Animator>();
-        }
->>>>>>> Nabulo2
     }
 
     public void Shoot()
@@ -52,7 +39,6 @@ public class Weapon : MonoBehaviour
             return;
         }
 
-<<<<<<< HEAD
         if (currentBullets <= 0)
         {
             Debug.Log("No bullets left! Need to reload.");
@@ -68,24 +54,6 @@ public class Weapon : MonoBehaviour
         bool hitDetected = Physics.Raycast(playerCamera.transform.position, rayDirection, out hit, Range);
 
         if (hitDetected)
-=======
-        if (isSword)
-        {
-            // Play sword animation
-            swordAnimator.SetTrigger("SWING");
-            Debug.Log("Sword swing animation triggered");
-            return;
-        }
-
-        RaycastHit hit;
-        Vector3 rayDirection = playerCamera.transform.forward;
-
-        bool hitDetected = Physics.Raycast(playerCamera.transform.position, rayDirection, out hit, Range);
-
-        Vector3 impactPoint = hitDetected ? hit.point : playerCamera.transform.position + rayDirection * Range;
-
-        if (!hitDetected)
->>>>>>> Nabulo2
         {
             Debug.Log("Hit: " + hit.transform.name);
 
@@ -102,7 +70,6 @@ public class Weapon : MonoBehaviour
             Destroy(BulletImpact_2, 2f);
         }
     }
-<<<<<<< HEAD
 
     public void Reload()
     {
@@ -132,6 +99,4 @@ public class Weapon : MonoBehaviour
             Debug.LogWarning("Ammo display TMP text is not assigned!");
         }
     }
-=======
->>>>>>> Nabulo2
 }

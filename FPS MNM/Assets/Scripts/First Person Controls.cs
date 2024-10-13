@@ -19,8 +19,6 @@ public class FirstPersonControls : MonoBehaviour
     public float gamepadLookSpeed = 1.0f; // Gamepad look speed
     private bool isUsingGamepad = false; // Track if the gamepad is being used
 
-
-
     private Vector2 moveInput;
     private Vector2 lookInput;
     private float verticalLookRotation = 0f;
@@ -48,11 +46,11 @@ public class FirstPersonControls : MonoBehaviour
     [Header("PICKING UP SETTINGS")]
     [Space(5)]
     public Transform holdPosition;
+    public Transform holdPositionPickUp; // Add a new hold position for generic pickup items
     private GameObject heldObject;
 
     [Header("SECOND WEAPON HOLD POSITION")]
-    public Transform holdPositionSecondWeapon; 
-
+    public Transform holdPositionSecondWeapon;
 
     [Header("TELEPORT SETTINGS")]
     [Space(5)]
@@ -60,8 +58,9 @@ public class FirstPersonControls : MonoBehaviour
     public bool canTeleport = false;
 
     [Header("WEAPON SETTINGS")]
-    public List<Weapon> weapons = new List<Weapon>(); 
+    public List<Weapon> weapons = new List<Weapon>();
     private int currentWeaponIndex = 0;
+
     private void OnTriggerEnter(Collider other)
     {
         // Check if the player collided with an object tagged "IF"
@@ -75,9 +74,7 @@ public class FirstPersonControls : MonoBehaviour
     public void EndGame()
     {
         Debug.Log("Game Over: Player collided with 'IF' tagged object.");
-
         Application.Quit();
-
     }
 
     private void Awake()
@@ -98,8 +95,7 @@ public class FirstPersonControls : MonoBehaviour
 
         playerInput.Player.Look.performed += ctx => {
             lookInput = ctx.ReadValue<Vector2>();
-            
-            isUsingGamepad = ctx.control.device is Gamepad; 
+            isUsingGamepad = ctx.control.device is Gamepad;
         };
         playerInput.Player.Look.canceled += ctx => lookInput = Vector2.zero;
 
@@ -112,7 +108,6 @@ public class FirstPersonControls : MonoBehaviour
         playerInput.Player.Teleport.performed += ctx => Teleport();
         playerInput.Player.SwitchWeapon.performed += ctx => SwitchWeapon();
     }
-
 
     private void Update()
     {
@@ -146,18 +141,16 @@ public class FirstPersonControls : MonoBehaviour
     {
         if (canTeleport)
         {
-            StartCoroutine(TeleportPlayer()); 
+            StartCoroutine(TeleportPlayer());
         }
     }
 
-
-
     private IEnumerator TeleportPlayer()
     {
-        characterController.enabled = false; 
+        characterController.enabled = false;
         transform.position = TeleportLocation.position;
-        yield return null; 
-        characterController.enabled = true; 
+        yield return null;
+        characterController.enabled = true;
         Debug.Log("Player teleported to " + TeleportLocation.position);
         ResetTeleport();
     }
@@ -187,7 +180,6 @@ public class FirstPersonControls : MonoBehaviour
 
         playerCamera.localEulerAngles = new Vector3(verticalLookRotation, 0, 0);
     }
-
 
     public void ApplyGravity()
     {
@@ -220,41 +212,53 @@ public class FirstPersonControls : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, pickUpRange))
         {
-            if (hit.collider.CompareTag("PickUp") || hit.collider.CompareTag("Gun"))
+            if (hit.collider.CompareTag("PickUp"))
             {
                 GameObject objectToPickUp = hit.collider.gameObject;
                 Rigidbody objectRb = objectToPickUp.GetComponent<Rigidbody>();
 
-                if (hit.collider.CompareTag("Gun"))
+                // Set the Rigidbody to kinematic if it has one
+                if (objectRb != null)
                 {
-                    Weapon newWeapon = objectToPickUp.GetComponent<Weapon>();
-                    if (newWeapon != null && weapons.Count < 2 && !weapons.Contains(newWeapon))
+                    objectRb.isKinematic = true;
+                }
+
+                // Place the picked-up object at the designated hold position for generic items
+                objectToPickUp.transform.position = holdPositionPickUp.position;
+                objectToPickUp.transform.rotation = holdPositionPickUp.rotation;
+                objectToPickUp.transform.parent = holdPositionPickUp;
+
+                heldObject = objectToPickUp; // Set heldObject to the picked-up object
+
+                Debug.Log("Picked up a generic object and placed it at the hold position.");
+            }
+            else if (hit.collider.CompareTag("Gun"))
+            {
+                GameObject objectToPickUp = hit.collider.gameObject;
+                Rigidbody objectRb = objectToPickUp.GetComponent<Rigidbody>();
+
+                Weapon newWeapon = objectToPickUp.GetComponent<Weapon>();
+                if (newWeapon != null && weapons.Count < 2 && !weapons.Contains(newWeapon))
+                {
+                    weapons.Add(newWeapon);
+
+                    EquipWeapon(weapons.Count - 1);
+
+                    if (objectRb != null)
                     {
-                        weapons.Add(newWeapon);
-
-                        EquipWeapon(weapons.Count - 1);
-
-                        if (objectRb != null)
-                        {
-                            objectRb.isKinematic = true;
-                        }
-
-                        Transform holdPositionToUse = weapons.Count == 1 ? holdPosition : holdPositionSecondWeapon;
-                        objectToPickUp.transform.position = holdPositionToUse.position;
-                        objectToPickUp.transform.rotation = holdPositionToUse.rotation;
-                        objectToPickUp.transform.parent = holdPositionToUse;
-
-                        Debug.Log("Weapon picked up and equipped.");
+                        objectRb.isKinematic = true;
                     }
+
+                    Transform holdPositionToUse = weapons.Count == 1 ? holdPosition : holdPositionSecondWeapon;
+                    objectToPickUp.transform.position = holdPositionToUse.position;
+                    objectToPickUp.transform.rotation = holdPositionToUse.rotation;
+                    objectToPickUp.transform.parent = holdPositionToUse;
+
+                    Debug.Log("Weapon picked up and equipped.");
                 }
             }
         }
     }
-
-
-
-
-
 
     public void EquipWeapon(int index)
     {
@@ -262,7 +266,7 @@ public class FirstPersonControls : MonoBehaviour
         {
             for (int i = 0; i < weapons.Count; i++)
             {
-                weapons[i].gameObject.SetActive(i == index); 
+                weapons[i].gameObject.SetActive(i == index);
             }
 
             currentWeaponIndex = index;
@@ -273,15 +277,13 @@ public class FirstPersonControls : MonoBehaviour
                 Rigidbody weaponRb = weapon.GetComponent<Rigidbody>();
                 if (weaponRb != null)
                 {
-                    weaponRb.isKinematic = true; 
+                    weaponRb.isKinematic = true;
                 }
 
                 Debug.Log("Equipped weapon: " + weapon.gameObject.name);
             }
         }
     }
-
-
 
     public void DropCurrentWeapon()
     {
@@ -294,7 +296,7 @@ public class FirstPersonControls : MonoBehaviour
             }
 
             weapon.transform.parent = null;
-            weapon.gameObject.SetActive(false); 
+            weapon.gameObject.SetActive(false);
             weapons.Remove(weapon);
             weapon = null;
 
@@ -310,5 +312,4 @@ public class FirstPersonControls : MonoBehaviour
             EquipWeapon(currentWeaponIndex);
         }
     }
-
 }
