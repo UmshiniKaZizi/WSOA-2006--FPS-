@@ -233,7 +233,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
+  - {fileID: 2100000, guid: b1f16442dbd78144cb158445a6f4d003, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5679,6 +5679,7 @@ MonoBehaviour:
   NoteTextGO: {fileID: 0}
   interactionCanvas: {fileID: 0}
   interactionText: {fileID: 0}
+  noteID: 0
   NoteText: 'Dear IDS
 
 
@@ -5899,7 +5900,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5d4f51606995f834792ce7323963d340, type: 2}
+  - {fileID: 2100000, guid: b1f16442dbd78144cb158445a6f4d003, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11390,6 +11391,7 @@ MonoBehaviour:
   NoteTextGO: {fileID: 0}
   interactionCanvas: {fileID: 1484579720}
   interactionText: {fileID: 1368517528}
+  noteID: 0
   NoteText: "Welcom Agent \nThe Inter Dimentional Service is please to have you work
     for us.\n\nYour first mission is to find an informat.\nHis last know location
     is the town of Abandonia on the planet of Rockodia which is the planet you are
@@ -21669,7 +21671,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9fc1081d95f47f64094e97e842bbb7cf, type: 2}
+  - {fileID: 2100000, guid: de1e7c003f5a7d9428001908b83b87e3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28651,7 +28653,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5d4f51606995f834792ce7323963d340, type: 2}
+  - {fileID: 2100000, guid: b1f16442dbd78144cb158445a6f4d003, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -33589,7 +33591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2065943615
 Transform:
   m_ObjectHideFlags: 0

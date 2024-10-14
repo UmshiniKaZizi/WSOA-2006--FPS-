@@ -39,7 +39,7 @@ public class FirstPersonControls : MonoBehaviour
     public GameObject projectilePrefab;
     public Transform firePoint;
     public float projectileSpeed = 20f;
-    public float pickUpRange = 5f;
+    public float pickUpRange = 10f;
     public bool holdingGun = false;
     private Weapon weapon;
 
@@ -60,6 +60,9 @@ public class FirstPersonControls : MonoBehaviour
     [Header("WEAPON SETTINGS")]
     public List<Weapon> weapons = new List<Weapon>();
     private int currentWeaponIndex = 0;
+
+    [SerializeField]
+    public Weapon Weapon;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -278,8 +281,9 @@ public class FirstPersonControls : MonoBehaviour
                 if (weaponRb != null)
                 {
                     weaponRb.isKinematic = true;
+                    
                 }
-
+                
                 Debug.Log("Equipped weapon: " + weapon.gameObject.name);
             }
         }

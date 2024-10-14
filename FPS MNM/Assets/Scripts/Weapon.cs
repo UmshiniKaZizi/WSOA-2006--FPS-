@@ -16,6 +16,12 @@ public class Weapon : MonoBehaviour
     public int currentBullets; // Current bullets remaining in the magazine
     public TMP_Text ammoDisplay_TMP; // Reference to the TMP text element for displaying ammo
 
+    [Header("GameObject to Deactivate")]
+    public GameObject objectToDeactivate; // Reference to the object to set inactive once player has the gun
+
+    private Rigidbody weaponRigidbody; // Reference to the weapon's Rigidbody component
+    private bool hasDeactivatedWall = false; // To ensure wall deactivation happens only once
+
     private void Start()
     {
         // Initialize current bullets to max at the start
@@ -23,6 +29,22 @@ public class Weapon : MonoBehaviour
 
         // Update the ammo display at the beginning
         UpdateAmmoDisplay();
+
+        // Get the Rigidbody component
+        weaponRigidbody = GetComponent<Rigidbody>();
+        if (weaponRigidbody == null)
+        {
+            Debug.LogError("Rigidbody not found on weapon!");
+        }
+    }
+
+    private void Update()
+    {
+        if (weaponRigidbody != null && weaponRigidbody.isKinematic && !hasDeactivatedWall)
+        {
+            SetObjectInactive();
+            hasDeactivatedWall = true; // Ensure it only happens once
+        }
     }
 
     public void Shoot()
@@ -97,6 +119,15 @@ public class Weapon : MonoBehaviour
         else
         {
             Debug.LogWarning("Ammo display TMP text is not assigned!");
+        }
+    }
+
+    private void SetObjectInactive()
+    {
+        if (objectToDeactivate != null && objectToDeactivate.activeSelf)
+        {
+            Debug.Log("Deactivating object: " + objectToDeactivate.name);
+            objectToDeactivate.SetActive(false);
         }
     }
 }

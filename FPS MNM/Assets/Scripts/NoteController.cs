@@ -141,8 +141,9 @@ public class NoteController : MonoBehaviour
 
     public void OnClosePerformed(InputAction.CallbackContext context)
     {
+        interactionCanvas.SetActive(true);
         if (isNoteOpen)
-        {   interactionCanvas.SetActive(true);
+        {   
             DisableNote();
         }
     }
@@ -156,7 +157,7 @@ public class NoteController : MonoBehaviour
 
     private void HideInteractionUI()
     {
-        interactionCanvas.SetActive(false);
+        //interactionCanvas.SetActive(false);
         interactionText.gameObject.SetActive(false);
     }
 }
