@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -24,17 +24,17 @@ public class UIManager : MonoBehaviour
     }
     public void StartGame()
     {
-        
+
         SceneManager.LoadScene("ScreenShot");
     }
 
-    
+
     public void QuitGame()
     {
-        
+
         Application.Quit();
 
-       
+
 #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
 #endif
