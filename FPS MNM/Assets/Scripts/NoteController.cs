@@ -1,7 +1,8 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;  // Import TextMeshPro namespace
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
+using System.Collections.Generic;
 
 public class NoteController : MonoBehaviour
 {
@@ -9,15 +10,25 @@ public class NoteController : MonoBehaviour
     [SerializeField]
     private GameObject noteCanvas;  // Shared note canvas for displaying the text
     [SerializeField]
-    private Text NoteTextGO;  // Shared UI Text object that displays the note content
+    private TextMeshProUGUI NoteTextGO;  // TextMeshProUGUI for TMP text component
+    [SerializeField]
+    public GameObject interactionCanvas;  // UI Canvas for showing interaction prompt
+    [SerializeField]
+    public TextMeshProUGUI interactionText;  // TMP text component for interaction prompt
 
+    [Header("Note Settings")]
+    [SerializeField]
+    private int noteID;  // Unique identifier for each note
     [SerializeField]
     [TextArea] private string NoteText;  // The text specific to this note
     [SerializeField]
     private UnityEvent open;
+    [SerializeField]
+    public string interactionMessage = "PRESS 'R' TO READ AND 'X' TO CLOSE.";  // Interaction message to set in the Inspector
 
     private bool isNoteOpen = false;
     private static NoteController currentlyOpenNote;  // Static reference to track the currently open note
+    private static Dictionary<int, string> noteTexts = new Dictionary<int, string>();  // Static dictionary for note texts
 
     // InputActionAsset reference for disabling player movement while reading
     [SerializeField]
@@ -28,49 +39,46 @@ public class NoteController : MonoBehaviour
 
     private void Awake()
     {
-        // Find and cache the "ReadNote" action from the "Player" action map
-        readNoteAction = inputActionAsset.FindActionMap("Player").FindAction("Read");
+        // Populate the dictionary with the note text for this instance
+        if (!noteTexts.ContainsKey(noteID))
+        {
+            noteTexts.Add(noteID, NoteText);
+        }
+        else
+        {
+            Debug.LogWarning($"Note ID {noteID} is already in use. Make sure each note has a unique ID.");
+        }
+
+        interactionCanvas.SetActive(false);
+        noteCanvas.SetActive(false);
     }
 
     private void OnEnable()
     {
-        // Enable "CloseNote" actions when the component is active
-        inputActionAsset.FindActionMap("Player").FindAction("CloseNote").Enable();
-        inputActionAsset.FindActionMap("Player").FindAction("CloseNote").performed += OnClosePerformed;
+        var closeNoteAction = inputActionAsset.FindActionMap("Player").FindAction("CloseNote");
+        closeNoteAction.Enable();
+        closeNoteAction.performed += OnClosePerformed;
+
+        if (readNoteAction != null)
+        {
+            readNoteAction.Enable();
+        }
     }
 
     private void OnDisable()
     {
-        // Disable "CloseNote" actions when the component is inactive
-        inputActionAsset.FindActionMap("Player").FindAction("CloseNote").Disable();
-        inputActionAsset.FindActionMap("Player").FindAction("CloseNote").performed -= OnClosePerformed;
+        var closeNoteAction = inputActionAsset.FindActionMap("Player").FindAction("CloseNote");
+        closeNoteAction.Disable();
+        closeNoteAction.performed -= OnClosePerformed;
+
+        if (readNoteAction != null)
+        {
+            readNoteAction.Disable();
+        }
 
         if (playerController != null)
         {
             playerController.SetCanReadNote(false);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerController = other.GetComponent<PlayerController>();
-            if (playerController != null)
-            {
-                Debug.Log("Player is in range to read note.");
-                playerController.SetCanReadNote(true);  // Enable the read action when the player is in range
-            }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player") && playerController != null)
-        {
-            Debug.Log("Player left the range of the note.");
-            playerController.SetCanReadNote(false);  // Disable the read action when the player leaves range
-            playerController = null;
         }
     }
 
@@ -82,9 +90,15 @@ public class NoteController : MonoBehaviour
             currentlyOpenNote.DisableNote();
         }
 
-        // Update the text in the shared NoteTextGO UI element
-        NoteTextGO.text = NoteText;
-        Debug.Log("Showing note with text: " + NoteText);
+        // Update the text in the shared NoteTextGO TMP UI element using the noteID
+        if (noteTexts.ContainsKey(noteID))
+        {
+            NoteTextGO.text = noteTexts[noteID];
+        }
+        else
+        {
+            NoteTextGO.text = "Note text not found.";
+        }
 
         // Show the note canvas
         noteCanvas.SetActive(true);
@@ -95,39 +109,54 @@ public class NoteController : MonoBehaviour
         currentlyOpenNote = this;
 
         DisablePlayerMovement(true);
+        HideInteractionUI();  // Hide interaction UI when note is opened
     }
 
     private void DisableNote()
     {
+        // Clear the text to avoid leftover content when opening another note
+        NoteTextGO.text = "";
+
         // Hide the note canvas
         noteCanvas.SetActive(false);
         isNoteOpen = false;
 
-        // Re-enable player movement
         DisablePlayerMovement(false);
+        currentlyOpenNote = null;
     }
 
     private void DisablePlayerMovement(bool disable)
     {
         if (disable)
         {
-            // Disable movement and looking around
             inputActionAsset.FindActionMap("Player").FindAction("Movement").Disable();
             inputActionAsset.FindActionMap("Player").FindAction("Look").Disable();
         }
         else
         {
-            // Re-enable movement and looking around
             inputActionAsset.FindActionMap("Player").FindAction("Movement").Enable();
-            inputActionAsset.FindAction("Look").Enable();
+            inputActionAsset.FindActionMap("Player").FindAction("Look").Enable();
         }
     }
 
     public void OnClosePerformed(InputAction.CallbackContext context)
     {
         if (isNoteOpen)
-        {
+        {   interactionCanvas.SetActive(true);
             DisableNote();
         }
+    }
+
+    private void ShowInteractionUI()
+    {
+        interactionText.text = interactionMessage;
+        interactionCanvas.SetActive(true);
+        interactionText.gameObject.SetActive(true);
+    }
+
+    private void HideInteractionUI()
+    {
+        interactionCanvas.SetActive(false);
+        interactionText.gameObject.SetActive(false);
     }
 }

@@ -25,7 +25,7 @@ public class UIManager : MonoBehaviour
     public void StartGame()
     {
         
-        SceneManager.LoadScene("LEVEL 1");
+        SceneManager.LoadScene("ScreenShot");
     }
 
     

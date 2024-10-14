@@ -5635,10 +5635,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a819ff17df4cbcb4793c674f3e2e4557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raylength: 5
+  rayLength: 50
+  playerCamera: {fileID: 176491319}
   crosshair: {fileID: 1222155899}
   inputActionAsset: {fileID: -944628639613478452, guid: c4469f4ead0f2be44ae723c1adfdd7af,
     type: 3}
+  inventory: {fileID: 0}
+  interactionText: {fileID: 0}
 --- !u!1 &220156042
 GameObject:
   m_ObjectHideFlags: 0
@@ -5673,7 +5676,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteCanvas: {fileID: 1800906042}
-  NoteTextGO: {fileID: 74145524}
+  NoteTextGO: {fileID: 0}
+  interactionCanvas: {fileID: 0}
+  interactionText: {fileID: 0}
   NoteText: 'Dear IDS
 
 
@@ -5682,6 +5687,7 @@ MonoBehaviour:
   open:
     m_PersistentCalls:
       m_Calls: []
+  interactionMessage: Press 'R' to read and 'X' to Close.
   inputActionAsset: {fileID: -944628639613478452, guid: c4469f4ead0f2be44ae723c1adfdd7af,
     type: 3}
 --- !u!65 &220156044
@@ -5784,7 +5790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 1484579720}
-  interactionText: {fileID: 502085118}
+  interactionText: {fileID: 0}
   interactionMessage: 'Press R to read and X to close '
 --- !u!1 &248990361
 GameObject:
@@ -11381,7 +11387,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteCanvas: {fileID: 1800906042}
-  NoteTextGO: {fileID: 74145524}
+  NoteTextGO: {fileID: 0}
+  interactionCanvas: {fileID: 1484579720}
+  interactionText: {fileID: 1368517528}
   NoteText: "Welcom Agent \nThe Inter Dimentional Service is please to have you work
     for us.\n\nYour first mission is to find an informat.\nHis last know location
     is the town of Abandonia on the planet of Rockodia which is the planet you are
@@ -11389,6 +11397,7 @@ MonoBehaviour:
   open:
     m_PersistentCalls:
       m_Calls: []
+  interactionMessage: Press 'R' to read and 'X' to Close.
   inputActionAsset: {fileID: -944628639613478452, guid: c4469f4ead0f2be44ae723c1adfdd7af,
     type: 3}
 --- !u!114 &647479931
@@ -11404,7 +11413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 1484579720}
-  interactionText: {fileID: 502085118}
+  interactionText: {fileID: 0}
   interactionMessage: 'Press R to read and X to close '
 --- !u!1 &680013267 stripped
 GameObject:
@@ -11808,9 +11817,9 @@ MonoBehaviour:
   muzzleFlash: {fileID: 1113366130}
   BulletImpactEffect_1: {fileID: 2032931164}
   BulletImpactEffect_2: {fileID: 262593560}
-  CanvasTransform: {fileID: 0}
-  isSword: 0
-  swordAnimator: {fileID: 0}
+  maxBullets: 30
+  currentBullets: 0
+  ammoDisplay_TMP: {fileID: 0}
 --- !u!23 &902939479
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11893,7 +11902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 1484579720}
-  interactionText: {fileID: 74145524}
+  interactionText: {fileID: 0}
   interactionMessage: 'Press E to Pick Up
 
 '
@@ -22690,6 +22699,7 @@ MonoBehaviour:
   pickUpRange: 3
   holdingGun: 1
   holdPosition: {fileID: 821326446}
+  holdPositionPickUp: {fileID: 0}
   holdPositionSecondWeapon: {fileID: 1126228307}
   TeleportLocation: {fileID: 1416898560}
   canTeleport: 1

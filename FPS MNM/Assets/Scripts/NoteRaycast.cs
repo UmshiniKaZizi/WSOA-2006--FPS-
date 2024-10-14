@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class RaycastInteraction : MonoBehaviour
 {
     [Header("Raycast Features")]
     [SerializeField] private float rayLength = 50f;  // Length of the raycast
     [SerializeField] private Camera playerCamera;  // Reference to the camera component
-    private InteractableObject interactableObject;  // Currently detected interactable object
 
     [Header("Crosshair")]
     [SerializeField] private Image crosshair;  // UI element to show crosshair status
@@ -15,10 +15,18 @@ public class RaycastInteraction : MonoBehaviour
     [Header("Input Action Asset")]
     [SerializeField] private InputActionAsset inputActionAsset;  // Input actions asset
 
-    private InputAction interactAction;  // Input action for interacting with objects
-
     [Header("Inventory")]
     [SerializeField] private Inventory inventory;  // Reference to the player's inventory
+
+    [Header("UI Elements")]
+    [SerializeField] private TextMeshProUGUI interactionText;
+
+    private InputAction interactAction;  // Input action for interacting with objects
+    private InputAction readNoteAction;  // Input action for reading notes
+
+    private GameObject currentTarget;
+    private InteractableObject interactableObject;  // Currently detected interactable object
+    private NoteController noteObject;  // Currently detected note object
 
     private void Awake()
     {
@@ -27,36 +35,41 @@ public class RaycastInteraction : MonoBehaviour
             playerCamera = Camera.main;  // Assign the main camera if not set in the Inspector
         }
 
-        // Get the "Interact" action from the Player action map
+        // Get the "Interact" and "ReadNote" actions from the Player action map
         interactAction = inputActionAsset.FindActionMap("Player").FindAction("Interact");
+        readNoteAction = inputActionAsset.FindActionMap("Player").FindAction("Read");
 
-        if (interactAction == null)
+        if (interactAction == null || readNoteAction == null)
         {
-            Debug.LogError("Interact action not found in the Player action map.");
+            Debug.LogError("Interact or ReadNote action not found in the Player action map.");
         }
     }
 
     private void OnEnable()
     {
-        if (interactAction != null)
-        {
-            interactAction.Enable();
-            interactAction.performed += OnInteractPerformed;
-        }
+        interactAction?.Enable();
+        readNoteAction?.Enable();
     }
 
     private void OnDisable()
     {
-        if (interactAction != null)
-        {
-            interactAction.Disable();
-            interactAction.performed -= OnInteractPerformed;
-        }
+        interactAction?.Disable();
+        readNoteAction?.Disable();
     }
 
     private void Update()
     {
         PerformRaycast();
+
+        if (interactAction != null && interactAction.triggered)
+        {
+            OnInteractPerformed();
+        }
+
+        if (readNoteAction != null && readNoteAction.triggered)
+        {
+            OnReadNotePerformed();
+        }
     }
 
     private void PerformRaycast()
@@ -65,49 +78,100 @@ public class RaycastInteraction : MonoBehaviour
         Ray ray = playerCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
         if (Physics.Raycast(ray, out RaycastHit hit, rayLength))
         {
-            var hitObject = hit.collider.gameObject;
+            if (hit.collider.gameObject != currentTarget)
+            {
+                Debug.Log($"Raycast hit: {hit.collider.gameObject.name}");  // Debug the hit object
 
-            // Prioritize key interaction over any other interactable object
-            if (hitObject.CompareTag("Key"))
-            {
-                SetInteractable(hitObject.GetComponent<InteractableObject>());
-            }
-            else if (hitObject.GetComponent<InteractableObject>() != null && interactableObject == null)
-            {
-                // Only set a non-key interactable if no key is detected
-                SetInteractable(hitObject.GetComponent<InteractableObject>());
-            }
-            else if (hitObject.GetComponent<InteractableObject>() == null)
-            {
-                ClearInteraction();
+                currentTarget = hit.collider.gameObject;
+                HandleNewTarget(currentTarget);
             }
         }
         else
         {
-            ClearInteraction();
+            if (currentTarget != null)
+            {
+                Debug.Log("Raycast did not hit any target, clearing interaction.");
+                ClearInteraction();
+                ClearNote();
+                currentTarget = null;
+            }
+        }
+    }
+
+    private void HandleNewTarget(GameObject target)
+    {
+        // Reset previous interaction
+        ClearInteraction();
+        ClearNote();
+
+        // Handle the new interaction
+        if (target.CompareTag("Key"))
+        {
+            Debug.Log("Hit a Key object.");
+            SetInteractable(target.GetComponent<InteractableObject>());
+        }
+        else if (target.TryGetComponent(out NoteController newNote))
+        {
+            Debug.Log("Hit a Note object.");
+            SetNoteObject(newNote);
+        }
+        else if (target.TryGetComponent(out InteractableObject newInteractable))
+        {
+            Debug.Log("Hit an InteractableObject.");
+            SetInteractable(newInteractable);
+        }
+        else
+        {
+            Debug.Log("No valid interactable component found on target.");
         }
     }
 
     private void SetInteractable(InteractableObject newInteractable)
     {
-        if (newInteractable != null && newInteractable != interactableObject)
+        if (newInteractable != null)
         {
-            ClearInteraction();
             interactableObject = newInteractable;
             HighlightCrosshair(true);
+            interactionText.text = "Press 'E' to interact";
+            interactionText.enabled = true;
             interactableObject.ShowInteractionUI();
         }
     }
 
-    private void OnInteractPerformed(InputAction.CallbackContext context)
+    private void SetNoteObject(NoteController newNote)
+    {
+        if (newNote != null)
+        {
+            // Set the reference to the note object
+            noteObject = newNote;
+
+            // Highlight the crosshair
+            HighlightCrosshair(true);
+
+            // Set the interaction message on the note's UI
+            newNote.interactionText.text = newNote.interactionMessage;
+
+            // Activate the interaction canvas and text in the NoteController
+            newNote.interactionCanvas.SetActive(true);
+            newNote.interactionText.gameObject.SetActive(true);
+
+            // Set the prompt text for interacting with the note
+            interactionText.text = "PRESS 'R' TO READ AND 'X' TO CLOSE.";
+            interactionText.enabled = true;
+
+            Debug.Log("Note object detected. Interaction UI activated.");
+        }
+    }
+
+
+    private void OnInteractPerformed()
     {
         if (interactableObject != null)
         {
             Debug.Log("Interacting with object: " + interactableObject.name);
 
-            // Interacting with a door
-            var door = interactableObject.GetComponent<DoorController>();
-            if (door != null)
+            // Interacting with various objects
+            if (interactableObject.TryGetComponent(out DoorController door))
             {
                 if (inventory.HasKey(door.requiredKey))
                 {
@@ -121,18 +185,14 @@ public class RaycastInteraction : MonoBehaviour
                 return;
             }
 
-            // Interacting with a drawer
-            var drawer = interactableObject.GetComponent<DrawerController>();
-            if (drawer != null)
+            if (interactableObject.TryGetComponent(out DrawerController drawer))
             {
                 drawer.ToggleDrawer();  // Toggle the drawer open or closed
                 Debug.Log("Drawer toggled.");
                 return;
             }
 
-            // Interacting with a key
-            var key = interactableObject.GetComponent<KeyItem>();
-            if (key != null)
+            if (interactableObject.TryGetComponent(out KeyItem key))
             {
                 if (inventory != null)
                 {
@@ -148,9 +208,7 @@ public class RaycastInteraction : MonoBehaviour
                 return;
             }
 
-            // Interacting with a keypad
-            var keypad = interactableObject.GetComponent<KeypadController>();
-            if (keypad != null)
+            if (interactableObject.TryGetComponent(out KeypadController keypad))
             {
                 Debug.Log("Interacting with keypad.");
                 keypad.ActivateKeypad();  // Activate the keypad interaction mode
@@ -163,13 +221,37 @@ public class RaycastInteraction : MonoBehaviour
         }
     }
 
+    private void OnReadNotePerformed()
+    {
+        if (noteObject != null)
+        {
+            Debug.Log("Reading the note...");
+            noteObject.ShowNote();
+        }
+        else
+        {
+            Debug.Log("No note detected to read.");
+        }
+    }
+
     private void ClearInteraction()
     {
         if (interactableObject != null)
         {
             HighlightCrosshair(false);  // Reset crosshair color
+            interactionText.enabled = false;
             interactableObject.HideInteractionUI();  // Hide interaction UI
             interactableObject = null;
+        }
+    }
+
+    private void ClearNote()
+    {
+        if (noteObject != null)
+        {
+            HighlightCrosshair(false);  // Reset crosshair color
+            interactionText.enabled = false;
+            noteObject = null;
         }
     }
 
