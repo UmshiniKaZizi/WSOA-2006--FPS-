@@ -31,6 +31,8 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     clipAnimations:
     - serializedVersion: 16
       name: SCREENROTATION
@@ -61,6 +63,12 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
+=======
+    clipAnimations: []
+>>>>>>> Stashed changes
+=======
+    clipAnimations: []
+>>>>>>> Stashed changes
     isReadable: 0
   meshes:
     lODScreenPercentages: []
