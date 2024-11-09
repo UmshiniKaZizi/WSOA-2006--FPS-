@@ -752,7 +752,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 853875434}
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
+=======
+  interactionText: {fileID: 0}
+>>>>>>> Stashed changes
   interactionMessage: PRESS 'F' TO OPEN DOOR
 --- !u!54 &44732631
 Rigidbody:
@@ -7284,7 +7288,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 853875434}
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
+=======
+  interactionText: {fileID: 0}
+>>>>>>> Stashed changes
   interactionMessage: 'PRESS ''F'' TO COLLECT KEY
 
 '
@@ -7438,7 +7446,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 853875434}
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
+=======
+  interactionText: {fileID: 0}
+>>>>>>> Stashed changes
   interactionMessage: PRESS 'F' TO OPEN HATCH
 --- !u!114 &906695835
 MonoBehaviour:
@@ -7641,7 +7653,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 853875434}
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
+=======
+  interactionText: {fileID: 0}
+>>>>>>> Stashed changes
   interactionMessage: PRESS 'F' TO OPEN HATCH
 --- !u!54 &937234691
 Rigidbody:
@@ -8267,7 +8283,11 @@ MeshFilter:
   m_Mesh: {fileID: 2762472744948416827, guid: 1634f5b3ae0d7934ead6f5d91a48d7bc, type: 3}
 --- !u!1 &978545493 stripped
 GameObject:
+<<<<<<< Updated upstream
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 07532e33a312f5247a069873582b973c,
+=======
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
     type: 3}
   m_PrefabInstance: {fileID: 1875045533}
   m_PrefabAsset: {fileID: 0}
@@ -8294,7 +8314,11 @@ Animator:
   m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &978545495 stripped
 Transform:
+<<<<<<< Updated upstream
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
     type: 3}
   m_PrefabInstance: {fileID: 1875045533}
   m_PrefabAsset: {fileID: 0}
@@ -9240,16 +9264,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 853875434}
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
   interactionMessage: 'PRESS ''F'' TO COLLECT KEY
 
 '
 --- !u!1 &1028211922 stripped
 GameObject:
+=======
+  interactionText: {fileID: 0}
+  interactionMessage: 'PRESS ''F'' TO COLLECT KEY
+
+'
+--- !u!1 &1028211922
+GameObject:
+  m_ObjectHideFlags: 0
+>>>>>>> Stashed changes
   m_CorrespondingSourceObject: {fileID: -7648502956408741331, guid: dc07aa91d1b67cb4a92232230df82f70,
     type: 3}
   m_PrefabInstance: {fileID: 1803013674}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1028211929}
+  - component: {fileID: 1028211931}
+  - component: {fileID: 1028211930}
+  - component: {fileID: 1028211927}
+  - component: {fileID: 1028211926}
+  - component: {fileID: 1028211928}
+  m_Layer: 0
+  m_Name: Cube.044
+  m_TagString: Note
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+>>>>>>> Stashed changes
 --- !u!114 &1028211926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9263,17 +9315,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteCanvas: {fileID: 1644289908}
+<<<<<<< Updated upstream
   NoteTextGO: {fileID: 946543577}
   interactionCanvas: {fileID: 853875434}
   interactionText: {fileID: 986098593}
   noteID: 0
+=======
+  NoteTextGO: {fileID: 0}
+>>>>>>> Stashed changes
   NoteText: "WELCOME TO THE INTER-DIMENTISONAL SERVICE \nMR.SMITH \n\nWE ARE PROUD
     TO HAVE A DECENDENT OF OUR FOUNDING FATHERS AS PART OF THE TEAM.\n\nGOODLUCK
     YOU HAVE SOME BIG SHOES TO FILL."
   open:
     m_PersistentCalls:
       m_Calls: []
+<<<<<<< Updated upstream
   interactionMessage: PRESS 'R' TO READ AND 'X' TO CLOSE.se
+=======
+>>>>>>> Stashed changes
   inputActionAsset: {fileID: -944628639613478452, guid: c4469f4ead0f2be44ae723c1adfdd7af,
     type: 3}
 --- !u!65 &1028211927
@@ -9310,8 +9369,81 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 853875434}
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
   interactionMessage: PRESS 'R' TO READ AND 'X' TO CLOSE.
+=======
+  interactionText: {fileID: 0}
+  interactionMessage: PRESS 'R' TO READ AND 'X' TO CLOSE.
+--- !u!4 &1028211929
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: -8557002723003063263, guid: dc07aa91d1b67cb4a92232230df82f70,
+    type: 3}
+  m_PrefabInstance: {fileID: 1803013674}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028211922}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 0.008545707, y: 1.4584681, z: 0.1090695}
+  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1552257541}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1028211930
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 976723959910379622, guid: dc07aa91d1b67cb4a92232230df82f70,
+    type: 3}
+  m_PrefabInstance: {fileID: 1803013674}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028211922}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 637949407474519127, guid: dc07aa91d1b67cb4a92232230df82f70, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1028211931
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3418485910852479949, guid: dc07aa91d1b67cb4a92232230df82f70,
+    type: 3}
+  m_PrefabInstance: {fileID: 1803013674}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028211922}
+  m_Mesh: {fileID: 3925360246919112806, guid: dc07aa91d1b67cb4a92232230df82f70, type: 3}
+>>>>>>> Stashed changes
 --- !u!1001 &1051036681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10478,7 +10610,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 853875434}
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
+=======
+  interactionText: {fileID: 0}
+>>>>>>> Stashed changes
   interactionMessage: PRESS 'F' TO OPEN DOOR
 --- !u!54 &1137327567
 Rigidbody:
@@ -11887,7 +12023,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 853875434}
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
+=======
+  interactionText: {fileID: 0}
+>>>>>>> Stashed changes
   interactionMessage: Press "F" to Pick Up
 --- !u!1001 &1187595018
 PrefabInstance:
@@ -14023,7 +14163,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 853875434}
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
+=======
+  interactionText: {fileID: 0}
+>>>>>>> Stashed changes
   interactionMessage: PRESS 'F' TO OPEN DOOR
 --- !u!54 &1389685923
 Rigidbody:
@@ -15333,6 +15477,44 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542984824}
   m_Mesh: {fileID: 2762472744948416827, guid: 1634f5b3ae0d7934ead6f5d91a48d7bc, type: 3}
+<<<<<<< Updated upstream
+=======
+--- !u!1 &1552257540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: dc07aa91d1b67cb4a92232230df82f70,
+    type: 3}
+  m_PrefabInstance: {fileID: 1803013674}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1552257541}
+  m_Layer: 0
+  m_Name: phone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1552257541
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: dc07aa91d1b67cb4a92232230df82f70,
+    type: 3}
+  m_PrefabInstance: {fileID: 1803013674}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552257540}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -4069.592, y: 224.7, z: -968.9}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 1028211929}
+  - {fileID: 1746588010}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+>>>>>>> Stashed changes
 --- !u!1 &1552304412
 GameObject:
   m_ObjectHideFlags: 0
@@ -15894,7 +16076,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 853875434}
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
+=======
+  interactionText: {fileID: 0}
+>>>>>>> Stashed changes
   interactionMessage: 'PRESS ''F'' TO OPEN DRAWER
 
 '
@@ -16253,7 +16439,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 853875434}
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
+=======
+  interactionText: {fileID: 0}
+>>>>>>> Stashed changes
   interactionMessage: 'PRESS ''F'' TO OPEN DRAWER
 
 '
@@ -17150,12 +17340,34 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.013312593, y: 0.016009258, z: 0.0036956158}
   m_Center: {x: 0.018754203, y: -0.0000009553105, z: 0.0054174135}
+<<<<<<< Updated upstream
 --- !u!1 &1746588005 stripped
 GameObject:
+=======
+--- !u!1 &1746588005
+GameObject:
+  m_ObjectHideFlags: 0
+>>>>>>> Stashed changes
   m_CorrespondingSourceObject: {fileID: 26844662620191305, guid: dc07aa91d1b67cb4a92232230df82f70,
     type: 3}
   m_PrefabInstance: {fileID: 1803013674}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1746588010}
+  - component: {fileID: 1746588012}
+  - component: {fileID: 1746588011}
+  - component: {fileID: 1746588009}
+  m_Layer: 0
+  m_Name: Cube.045
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+>>>>>>> Stashed changes
 --- !u!114 &1746588009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17169,19 +17381,96 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteCanvas: {fileID: 1644289908}
+<<<<<<< Updated upstream
   NoteTextGO: {fileID: 946543577}
   interactionCanvas: {fileID: 853875434}
   interactionText: {fileID: 986098593}
   noteID: 0
+=======
+  NoteTextGO: {fileID: 0}
+>>>>>>> Stashed changes
   NoteText: "WELCOME TO THE INTER-DIMENTISONAL SERVICE \nMR.SMITH \n\nWE ARE PROUD
     TO HAVE A DECENDENT OF OUR FOUNDING FATHERS AS PART OF THE TEAM.\n\nGOODLUCK
     YOU HAVE SOME BIG SHOES TO FILL."
   open:
     m_PersistentCalls:
       m_Calls: []
+<<<<<<< Updated upstream
   interactionMessage: Press 'R' to read and 'X' to Close.
   inputActionAsset: {fileID: -944628639613478452, guid: c4469f4ead0f2be44ae723c1adfdd7af,
     type: 3}
+=======
+  inputActionAsset: {fileID: -944628639613478452, guid: c4469f4ead0f2be44ae723c1adfdd7af,
+    type: 3}
+--- !u!4 &1746588010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: -6134079766568285550, guid: dc07aa91d1b67cb4a92232230df82f70,
+    type: 3}
+  m_PrefabInstance: {fileID: 1803013674}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746588005}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 0.01, y: 1.58, z: 0.1090695}
+  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1552257541}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1746588011
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: -383518810844267698, guid: dc07aa91d1b67cb4a92232230df82f70,
+    type: 3}
+  m_PrefabInstance: {fileID: 1803013674}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746588005}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 99656467281103303, guid: dc07aa91d1b67cb4a92232230df82f70, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1746588012
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: -2038872484816279026, guid: dc07aa91d1b67cb4a92232230df82f70,
+    type: 3}
+  m_PrefabInstance: {fileID: 1803013674}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746588005}
+  m_Mesh: {fileID: 3874432442672741690, guid: dc07aa91d1b67cb4a92232230df82f70, type: 3}
+>>>>>>> Stashed changes
 --- !u!1 &1750703894
 GameObject:
   m_ObjectHideFlags: 0
@@ -18569,7 +18858,10 @@ MonoBehaviour:
   inputActionAsset: {fileID: -944628639613478452, guid: c4469f4ead0f2be44ae723c1adfdd7af,
     type: 3}
   inventory: {fileID: 98565399}
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
+=======
+>>>>>>> Stashed changes
 --- !u!114 &1872053266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18681,57 +18973,101 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+<<<<<<< Updated upstream
     - target: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -4132.4
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 240.1
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -1002.1
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 919132149155446097, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - target: {fileID: 919132149155446097, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
         type: 3}
       propertyPath: m_Name
       value: SHIP
@@ -18739,11 +19075,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+<<<<<<< Updated upstream
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 244621944}
     m_AddedComponents:
+<<<<<<< Updated upstream
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 07532e33a312f5247a069873582b973c,
         type: 3}
       insertIndex: -1
@@ -18753,6 +19094,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 978545496}
   m_SourcePrefab: {fileID: 100100000, guid: 07532e33a312f5247a069873582b973c, type: 3}
+=======
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bac46118e5108504283ee303ea077293,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 978545494}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bac46118e5108504283ee303ea077293,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 978545496}
+  m_SourcePrefab: {fileID: 100100000, guid: bac46118e5108504283ee303ea077293, type: 3}
+>>>>>>> Stashed changes
 --- !u!1 &1875966537
 GameObject:
   m_ObjectHideFlags: 0
