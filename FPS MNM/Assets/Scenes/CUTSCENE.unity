@@ -753,7 +753,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 853875434}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
+=======
+  interactionText: {fileID: 0}
+>>>>>>> Stashed changes
 =======
   interactionText: {fileID: 0}
 >>>>>>> Stashed changes
@@ -7289,7 +7293,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 853875434}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
+=======
+  interactionText: {fileID: 0}
+>>>>>>> Stashed changes
 =======
   interactionText: {fileID: 0}
 >>>>>>> Stashed changes
@@ -7447,7 +7455,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 853875434}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
+=======
+  interactionText: {fileID: 0}
+>>>>>>> Stashed changes
 =======
   interactionText: {fileID: 0}
 >>>>>>> Stashed changes
@@ -7654,7 +7666,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 853875434}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
+=======
+  interactionText: {fileID: 0}
+>>>>>>> Stashed changes
 =======
   interactionText: {fileID: 0}
 >>>>>>> Stashed changes
@@ -8284,7 +8300,11 @@ MeshFilter:
 --- !u!1 &978545493 stripped
 GameObject:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 07532e33a312f5247a069873582b973c,
+=======
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
 =======
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bac46118e5108504283ee303ea077293,
 >>>>>>> Stashed changes
@@ -8315,7 +8335,11 @@ Animator:
 --- !u!4 &978545495 stripped
 Transform:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
 =======
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
 >>>>>>> Stashed changes
@@ -9265,6 +9289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 853875434}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
   interactionMessage: 'PRESS ''F'' TO COLLECT KEY
 
@@ -9272,6 +9297,8 @@ MonoBehaviour:
 --- !u!1 &1028211922 stripped
 GameObject:
 =======
+=======
+>>>>>>> Stashed changes
   interactionText: {fileID: 0}
   interactionMessage: 'PRESS ''F'' TO COLLECT KEY
 
@@ -9279,13 +9306,19 @@ GameObject:
 --- !u!1 &1028211922
 GameObject:
   m_ObjectHideFlags: 0
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_CorrespondingSourceObject: {fileID: -7648502956408741331, guid: dc07aa91d1b67cb4a92232230df82f70,
     type: 3}
   m_PrefabInstance: {fileID: 1803013674}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1028211929}
@@ -9301,6 +9334,9 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!114 &1028211926
 MonoBehaviour:
@@ -9316,10 +9352,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteCanvas: {fileID: 1644289908}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   NoteTextGO: {fileID: 946543577}
   interactionCanvas: {fileID: 853875434}
   interactionText: {fileID: 986098593}
   noteID: 0
+=======
+  NoteTextGO: {fileID: 0}
+>>>>>>> Stashed changes
 =======
   NoteTextGO: {fileID: 0}
 >>>>>>> Stashed changes
@@ -9330,7 +9370,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   interactionMessage: PRESS 'R' TO READ AND 'X' TO CLOSE.se
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   inputActionAsset: {fileID: -944628639613478452, guid: c4469f4ead0f2be44ae723c1adfdd7af,
@@ -9370,9 +9413,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 853875434}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
   interactionMessage: PRESS 'R' TO READ AND 'X' TO CLOSE.
 =======
+=======
+>>>>>>> Stashed changes
   interactionText: {fileID: 0}
   interactionMessage: PRESS 'R' TO READ AND 'X' TO CLOSE.
 --- !u!4 &1028211929
@@ -9443,6 +9489,9 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1028211922}
   m_Mesh: {fileID: 3925360246919112806, guid: dc07aa91d1b67cb4a92232230df82f70, type: 3}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!1001 &1051036681
 PrefabInstance:
@@ -10611,7 +10660,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 853875434}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
+=======
+  interactionText: {fileID: 0}
+>>>>>>> Stashed changes
 =======
   interactionText: {fileID: 0}
 >>>>>>> Stashed changes
@@ -12024,7 +12077,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 853875434}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
+=======
+  interactionText: {fileID: 0}
+>>>>>>> Stashed changes
 =======
   interactionText: {fileID: 0}
 >>>>>>> Stashed changes
@@ -14164,7 +14221,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 853875434}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
+=======
+  interactionText: {fileID: 0}
+>>>>>>> Stashed changes
 =======
   interactionText: {fileID: 0}
 >>>>>>> Stashed changes
@@ -15478,7 +15539,10 @@ MeshFilter:
   m_GameObject: {fileID: 1542984824}
   m_Mesh: {fileID: 2762472744948416827, guid: 1634f5b3ae0d7934ead6f5d91a48d7bc, type: 3}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 --- !u!1 &1552257540
 GameObject:
   m_ObjectHideFlags: 0
@@ -15514,6 +15578,9 @@ Transform:
   - {fileID: 1746588010}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!1 &1552304412
 GameObject:
@@ -16077,7 +16144,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 853875434}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
+=======
+  interactionText: {fileID: 0}
+>>>>>>> Stashed changes
 =======
   interactionText: {fileID: 0}
 >>>>>>> Stashed changes
@@ -16440,7 +16511,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 853875434}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
+=======
+  interactionText: {fileID: 0}
+>>>>>>> Stashed changes
 =======
   interactionText: {fileID: 0}
 >>>>>>> Stashed changes
@@ -17341,8 +17416,14 @@ BoxCollider:
   m_Size: {x: 0.013312593, y: 0.016009258, z: 0.0036956158}
   m_Center: {x: 0.018754203, y: -0.0000009553105, z: 0.0054174135}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!1 &1746588005 stripped
 GameObject:
+=======
+--- !u!1 &1746588005
+GameObject:
+  m_ObjectHideFlags: 0
+>>>>>>> Stashed changes
 =======
 --- !u!1 &1746588005
 GameObject:
@@ -17353,7 +17434,10 @@ GameObject:
   m_PrefabInstance: {fileID: 1803013674}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1746588010}
@@ -17367,6 +17451,9 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!114 &1746588009
 MonoBehaviour:
@@ -17382,10 +17469,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteCanvas: {fileID: 1644289908}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   NoteTextGO: {fileID: 946543577}
   interactionCanvas: {fileID: 853875434}
   interactionText: {fileID: 986098593}
   noteID: 0
+=======
+  NoteTextGO: {fileID: 0}
+>>>>>>> Stashed changes
 =======
   NoteTextGO: {fileID: 0}
 >>>>>>> Stashed changes
@@ -17396,10 +17487,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   interactionMessage: Press 'R' to read and 'X' to Close.
   inputActionAsset: {fileID: -944628639613478452, guid: c4469f4ead0f2be44ae723c1adfdd7af,
     type: 3}
 =======
+=======
+>>>>>>> Stashed changes
   inputActionAsset: {fileID: -944628639613478452, guid: c4469f4ead0f2be44ae723c1adfdd7af,
     type: 3}
 --- !u!4 &1746588010
@@ -17470,6 +17564,9 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746588005}
   m_Mesh: {fileID: 3874432442672741690, guid: dc07aa91d1b67cb4a92232230df82f70, type: 3}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!1 &1750703894
 GameObject:
@@ -18859,7 +18956,10 @@ MonoBehaviour:
     type: 3}
   inventory: {fileID: 98565399}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   interactionText: {fileID: 986098593}
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 --- !u!114 &1872053266
@@ -18974,7 +19074,11 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - target: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
 =======
     - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
 >>>>>>> Stashed changes
@@ -18983,7 +19087,11 @@ PrefabInstance:
       value: -4132.4
       objectReference: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - target: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
 =======
     - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
 >>>>>>> Stashed changes
@@ -18992,7 +19100,11 @@ PrefabInstance:
       value: 240.1
       objectReference: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - target: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
 =======
     - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
 >>>>>>> Stashed changes
@@ -19001,7 +19113,11 @@ PrefabInstance:
       value: -1002.1
       objectReference: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - target: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
 =======
     - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
 >>>>>>> Stashed changes
@@ -19010,7 +19126,11 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - target: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
 =======
     - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
 >>>>>>> Stashed changes
@@ -19019,7 +19139,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - target: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
 =======
     - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
 >>>>>>> Stashed changes
@@ -19028,7 +19152,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - target: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
 =======
     - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
 >>>>>>> Stashed changes
@@ -19037,7 +19165,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - target: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
 =======
     - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
 >>>>>>> Stashed changes
@@ -19046,7 +19178,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - target: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
 =======
     - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
 >>>>>>> Stashed changes
@@ -19055,7 +19191,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - target: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
 =======
     - target: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
 >>>>>>> Stashed changes
@@ -19064,7 +19204,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - target: {fileID: 919132149155446097, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - target: {fileID: 919132149155446097, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
 =======
     - target: {fileID: 919132149155446097, guid: bac46118e5108504283ee303ea077293,
 >>>>>>> Stashed changes
@@ -19076,7 +19220,11 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 07532e33a312f5247a069873582b973c,
+=======
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
+>>>>>>> Stashed changes
 =======
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bac46118e5108504283ee303ea077293,
 >>>>>>> Stashed changes
@@ -19084,6 +19232,7 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 244621944}
     m_AddedComponents:
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 07532e33a312f5247a069873582b973c,
         type: 3}
@@ -19095,6 +19244,8 @@ PrefabInstance:
       addedObject: {fileID: 978545496}
   m_SourcePrefab: {fileID: 100100000, guid: 07532e33a312f5247a069873582b973c, type: 3}
 =======
+=======
+>>>>>>> Stashed changes
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bac46118e5108504283ee303ea077293,
         type: 3}
       insertIndex: -1
@@ -19104,6 +19255,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 978545496}
   m_SourcePrefab: {fileID: 100100000, guid: bac46118e5108504283ee303ea077293, type: 3}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!1 &1875966537
 GameObject:
