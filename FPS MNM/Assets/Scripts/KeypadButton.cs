@@ -3,17 +3,16 @@ using UnityEngine;
 public class KeypadButton : MonoBehaviour
 {
     [Header("Button Settings")]
-    [SerializeField] private string buttonValue; 
-    [SerializeField] private KeypadController keypadController;  
+    [SerializeField] private string buttonValue;
+    [SerializeField] private KeypadController keypadController;
 
     private Vector3 originalPosition;
     private Color originalColor;
     private Renderer buttonRenderer;
-    private float animationDuration = 0.2f;  
+    private float animationDuration = 0.2f;
 
     private void Start()
     {
-        
         originalPosition = transform.localPosition;
         buttonRenderer = GetComponent<Renderer>();
 
@@ -23,12 +22,10 @@ public class KeypadButton : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
+    public void PressButton() // New method to handle button press
     {
-        
         StartCoroutine(AnimateButtonPress());
 
-       
         if (keypadController == null)
         {
             Debug.LogError("KeypadController reference is missing. Please assign it in the Inspector.");
@@ -52,11 +49,9 @@ public class KeypadButton : MonoBehaviour
 
     private System.Collections.IEnumerator AnimateButtonPress()
     {
-       
         float elapsedTime = 0f;
-
-        Vector3 pressedPosition = originalPosition + new Vector3(0, -0.05f, 0); 
-        Color pressedColor = Color.green;  
+        Vector3 pressedPosition = originalPosition + new Vector3(0, -0.05f, 0);
+        Color pressedColor = Color.green;
 
         while (elapsedTime < animationDuration / 2)
         {
@@ -70,17 +65,14 @@ public class KeypadButton : MonoBehaviour
             yield return null;
         }
 
-        
         transform.localPosition = pressedPosition;
         if (buttonRenderer != null)
         {
             buttonRenderer.material.color = pressedColor;
         }
 
-       
         yield return new WaitForSeconds(0.1f);
 
-        
         elapsedTime = 0f;
 
         while (elapsedTime < animationDuration / 2)
@@ -95,7 +87,6 @@ public class KeypadButton : MonoBehaviour
             yield return null;
         }
 
-       
         transform.localPosition = originalPosition;
         if (buttonRenderer != null)
         {

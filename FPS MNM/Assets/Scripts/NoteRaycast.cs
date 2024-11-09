@@ -27,6 +27,7 @@ public class RaycastInteraction : MonoBehaviour
     private GameObject currentTarget;
     private InteractableObject interactableObject;  // Currently detected interactable object
     private NoteController noteObject;  // Currently detected note object
+    private KeypadButton keypadButton;  // Currently detected keypad button object
 
     private void Awake()
     {
@@ -93,6 +94,7 @@ public class RaycastInteraction : MonoBehaviour
                 Debug.Log("Raycast did not hit any target, clearing interaction.");
                 ClearInteraction();
                 ClearNote();
+                ClearKeypadButton();
                 currentTarget = null;
             }
         }
@@ -103,6 +105,7 @@ public class RaycastInteraction : MonoBehaviour
         // Reset previous interaction
         ClearInteraction();
         ClearNote();
+        ClearKeypadButton();
 
         // Handle the new interaction
         if (target.CompareTag("Key"))
@@ -119,6 +122,11 @@ public class RaycastInteraction : MonoBehaviour
         {
             Debug.Log("Hit an InteractableObject.");
             SetInteractable(newInteractable);
+        }
+        else if (target.TryGetComponent(out KeypadButton newKeypadButton))
+        {
+            Debug.Log("Hit a KeypadButton.");
+            SetKeypadButton(newKeypadButton);
         }
         else
         {
@@ -163,6 +171,16 @@ public class RaycastInteraction : MonoBehaviour
         }
     }
 
+    private void SetKeypadButton(KeypadButton newKeypadButton)
+    {
+        if (newKeypadButton != null)
+        {
+            keypadButton = newKeypadButton;
+            HighlightCrosshair(true);
+            interactionText.text = "Press 'E' to press button";
+            interactionText.enabled = true;
+        }
+    }
 
     private void OnInteractPerformed()
     {
@@ -215,6 +233,11 @@ public class RaycastInteraction : MonoBehaviour
                 return;
             }
         }
+        else if (keypadButton != null)
+        {
+            Debug.Log("Pressing keypad button: " + keypadButton.name);
+            keypadButton.PressButton();
+        }
         else
         {
             Debug.Log("No interactable object detected.");
@@ -252,6 +275,16 @@ public class RaycastInteraction : MonoBehaviour
             HighlightCrosshair(false);  // Reset crosshair color
             interactionText.enabled = false;
             noteObject = null;
+        }
+    }
+
+    private void ClearKeypadButton()
+    {
+        if (keypadButton != null)
+        {
+            HighlightCrosshair(false);  // Reset crosshair color
+            interactionText.enabled = false;
+            keypadButton = null;
         }
     }
 

@@ -12,7 +12,7 @@ public class Weapon : MonoBehaviour
     public GameObject BulletImpactEffect_1;
     public GameObject BulletImpactEffect_2;
 
-    public int maxBullets = 30; // Maximum bullets in a full magazine
+    public int maxBullets = 100; // Maximum bullets in a full magazine
     public int currentBullets; // Current bullets remaining in the magazine
     public TMP_Text ammoDisplay_TMP; // Reference to the TMP text element for displaying ammo
 
@@ -114,7 +114,7 @@ public class Weapon : MonoBehaviour
     {
         if (ammoDisplay_TMP != null)
         {
-            ammoDisplay_TMP.text = "Ammo: " + currentBullets + " / " + maxBullets;
+            ammoDisplay_TMP.text = "AMMO: " + currentBullets + " / " + maxBullets;
         }
         else
         {

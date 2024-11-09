@@ -39,7 +39,7 @@ public class FirstPersonControls : MonoBehaviour
     public GameObject projectilePrefab;
     public Transform firePoint;
     public float projectileSpeed = 20f;
-    public float pickUpRange = 10f;
+    public float pickUpRange = 40f;
     public bool holdingGun = false;
     private Weapon weapon;
 

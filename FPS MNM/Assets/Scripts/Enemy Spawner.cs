@@ -1,17 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject Enemyprefab;
-    public float SpawnInterval;
+    public float SpawnInterval = 3f;
     public int MaxEnemies = 5;
     public Transform[] SpawnPoints;
     public GameObject spawnPointPrefab;
     private int spawnCount = 0;
     public int CurrentEnemyCount = 0;
-    private bool spawningEnabled = true; // Flag to control spawning
+    private bool spawningEnabled = true;
 
     void Start()
     {
@@ -23,15 +22,10 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(SpawnEnemies());
     }
 
-    public void QuitGame()
+    // Coroutine to spawn enemies
+    private IEnumerator SpawnEnemies()
     {
-        Application.Quit();
-    }
-
-    // Coroutine to spawn enemies based on the flag
-    public IEnumerator SpawnEnemies()
-    {
-        while (spawningEnabled) // Spawn only if spawningEnabled is true
+        while (spawningEnabled)
         {
             yield return new WaitForSeconds(SpawnInterval);
 
@@ -39,14 +33,13 @@ public class EnemySpawner : MonoBehaviour
             {
                 Transform spawnPoint = SpawnPoints[Random.Range(0, SpawnPoints.Length)];
                 GameObject newEnemy = Instantiate(Enemyprefab, spawnPoint.position, spawnPoint.rotation);
-                newEnemy.GetComponent<Enemy>().spawner = this;
+                newEnemy.GetComponent<Enemy>().spawner = this;  // Assign spawner reference
                 CurrentEnemyCount++;
                 spawnCount++;
 
-                if (spawnCount == 15)
+                if (spawnCount == 20)
                 {
-                    //QuitGame();
-                    StopSpawning(); 
+                    StopSpawning();
                 }
             }
         }
@@ -65,7 +58,7 @@ public class EnemySpawner : MonoBehaviour
         Debug.Log("Spawning has been stopped.");
     }
 
-    // Method to reset enemy health
+    // Method to reset all enemy health
     public void ResetEnemies()
     {
         Enemy[] enemies = FindObjectsOfType<Enemy>();
@@ -77,6 +70,6 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-
+        // Optionally place any update logic here
     }
 }
