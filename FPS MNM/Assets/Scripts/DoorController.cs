@@ -26,21 +26,29 @@ public class DoorController : MonoBehaviour
 
     public void ToggleDoor(KeyItem playerKey)
     {
+        // If it's a keypad door, inform the player
         if (isKeypadDoor)
         {
             Debug.Log("This door requires a keypad to open.");
             return;
         }
 
-       
+        // If the door requires a key and the player does not have the correct key
         if (requiredKey != null && (playerKey == null || playerKey != requiredKey))
         {
             Debug.Log("You need the correct key to open this door!");
-            return; 
+            return;
         }
 
-        ToggleDoorState();  
+        // If no key is required and it is not a keypad door, open the door
+        if (requiredKey == null && isKeypadDoor== false)
+        {
+            Debug.Log("The door is unlocked and can be opened.");
+        }
+
+        ToggleDoorState(); // Open or close the door
     }
+
 
     public void OpenDoorFromKeypad()
     {
