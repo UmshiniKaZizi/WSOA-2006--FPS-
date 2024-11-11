@@ -68,7 +68,7 @@ public class Weapon : MonoBehaviour
         }
 
         muzzleFlash.Play();
-        currentBullets--; // Decrease bullet count
+        currentBullets++; // Decrease bullet count
         UpdateAmmoDisplay();
 
         RaycastHit hit;
