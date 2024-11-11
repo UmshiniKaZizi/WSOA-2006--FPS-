@@ -2510,6 +2510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementDistance: 4.5
   speed: 8
+  damageAmount: 10
 --- !u!23 &231776483
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2704,6 +2705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementDistance: 8
   speed: 8
+  damageAmount: 10
 --- !u!65 &267082523
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28481,12 +28483,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f2d2194b385f452459e5a38a0ff626ac,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4299.3
+      value: -4657.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2d2194b385f452459e5a38a0ff626ac,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 195.8
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2d2194b385f452459e5a38a0ff626ac,
         type: 3}
@@ -31649,6 +31651,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementDistance: 4.5
   speed: 8
+  damageAmount: 10
 --- !u!23 &1572640350
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -37804,6 +37807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementDistance: 8
   speed: 8
+  damageAmount: 10
 --- !u!23 &1702028480
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39835,6 +39839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementDistance: 4.5
   speed: 8
+  damageAmount: 10
 --- !u!23 &1837681420
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -40966,6 +40971,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementDistance: 4.5
   speed: 8
+  damageAmount: 10
 --- !u!23 &1915874604
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -41648,6 +41654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementDistance: 4.5
   speed: 8
+  damageAmount: 10
 --- !u!23 &1962987441
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42884,6 +42891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementDistance: 4.5
   speed: 8
+  damageAmount: 10
 --- !u!23 &2102038788
 MeshRenderer:
   m_ObjectHideFlags: 0
