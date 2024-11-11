@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class FirstPersonControls : MonoBehaviour
 {
@@ -54,7 +55,7 @@ public class FirstPersonControls : MonoBehaviour
 
     [Header("TELEPORT SETTINGS")]
     [Space(5)]
-    public Transform TeleportLocation;
+    public string sceneToLoad;  
     public bool canTeleport = false;
 
     [Header("WEAPON SETTINGS")]
@@ -144,18 +145,21 @@ public class FirstPersonControls : MonoBehaviour
     {
         if (canTeleport)
         {
-            StartCoroutine(TeleportPlayer());
+            LoadNewScene();  // Call the new method to load a scene
         }
     }
 
-    private IEnumerator TeleportPlayer()
+    private void LoadNewScene()
     {
-        characterController.enabled = false;
-        transform.position = TeleportLocation.position;
-        yield return null;
-        characterController.enabled = true;
-        Debug.Log("Player teleported to " + TeleportLocation.position);
-        ResetTeleport();
+        if (!string.IsNullOrEmpty(sceneToLoad))
+        {
+            SceneManager.LoadScene(sceneToLoad);
+            Debug.Log("Loading scene: " + sceneToLoad);
+        }
+        else
+        {
+            Debug.LogError("Scene name not set. Please specify a scene to load in the Inspector.");
+        }
     }
 
     public void ResetTeleport()

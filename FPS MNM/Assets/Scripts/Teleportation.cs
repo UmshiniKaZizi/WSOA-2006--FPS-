@@ -16,20 +16,7 @@ public class Teleportation : MonoBehaviour
         }
     }
 
-   public void OnTriggerStay(Collider other)
-{
-    if (other.CompareTag("Player"))
-    {
-        Debug.Log("Player inside teleportation trigger");
-        player = other.gameObject;
-        if (FirstPersonControls.canTeleport == true)
-        {
-            other.transform.position = FirstPersonControls.TeleportLocation.position;
-            Debug.Log("Player teleported to " + FirstPersonControls.TeleportLocation.position);
-            FirstPersonControls.ResetTeleport();
-        }
-    }
-}
+   
 
 
 }

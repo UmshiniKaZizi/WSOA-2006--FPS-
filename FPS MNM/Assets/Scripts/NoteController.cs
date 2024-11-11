@@ -35,10 +35,20 @@ public class NoteController : MonoBehaviour
     private InputActionAsset inputActionAsset;
 
     private InputAction readNoteAction;  // Define a new action for reading the note
+    private InputAction closeNoteAction;  // Define a new action for closing the note
     private PlayerController playerController;
 
     private void Awake()
     {
+        // Initialize the readNoteAction and closeNoteAction actions
+        readNoteAction = inputActionAsset.FindActionMap("Player").FindAction("Read");
+        closeNoteAction = inputActionAsset.FindActionMap("Player").FindAction("CloseNote");
+
+        if (readNoteAction == null || closeNoteAction == null)
+        {
+            Debug.LogError("Read or CloseNote action not found in the Player action map.");
+        }
+
         // Populate the dictionary with the note text for this instance
         if (!noteTexts.ContainsKey(noteID))
         {
@@ -55,9 +65,11 @@ public class NoteController : MonoBehaviour
 
     private void OnEnable()
     {
-        var closeNoteAction = inputActionAsset.FindActionMap("Player").FindAction("CloseNote");
-        closeNoteAction.Enable();
-        closeNoteAction.performed += OnClosePerformed;
+        if (closeNoteAction != null)
+        {
+            closeNoteAction.Enable();
+            closeNoteAction.performed += OnClosePerformed;  
+        }
 
         if (readNoteAction != null)
         {
@@ -67,9 +79,11 @@ public class NoteController : MonoBehaviour
 
     private void OnDisable()
     {
-        var closeNoteAction = inputActionAsset.FindActionMap("Player").FindAction("CloseNote");
-        closeNoteAction.Disable();
-        closeNoteAction.performed -= OnClosePerformed;
+        if (closeNoteAction != null)
+        {
+            closeNoteAction.performed -= OnClosePerformed;  
+            closeNoteAction.Disable();
+        }
 
         if (readNoteAction != null)
         {
@@ -81,6 +95,7 @@ public class NoteController : MonoBehaviour
             playerController.SetCanReadNote(false);
         }
     }
+
 
     public void ShowNote()
     {
@@ -109,7 +124,7 @@ public class NoteController : MonoBehaviour
         currentlyOpenNote = this;
 
         DisablePlayerMovement(true);
-        HideInteractionUI();  // Hide interaction UI when note is opened
+        //HideInteractionUI();  // Hide interaction UI when note is opened
     }
 
     private void DisableNote()
@@ -141,9 +156,12 @@ public class NoteController : MonoBehaviour
 
     public void OnClosePerformed(InputAction.CallbackContext context)
     {
+        Debug.Log("CloseNote action triggered.");  // Debug log
         interactionCanvas.SetActive(true);
+
         if (isNoteOpen)
-        {   
+        {
+            Debug.Log("Closing note.");
             DisableNote();
         }
     }
@@ -157,7 +175,6 @@ public class NoteController : MonoBehaviour
 
     private void HideInteractionUI()
     {
-        //interactionCanvas.SetActive(false);
         interactionText.gameObject.SetActive(false);
     }
 }
