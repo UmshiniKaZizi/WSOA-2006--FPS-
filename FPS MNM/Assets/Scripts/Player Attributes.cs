@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerAttributes : MonoBehaviour
@@ -29,7 +30,7 @@ public class PlayerAttributes : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("The player is dead");
-        // Implement death logic (e.g., reload scene, show game over screen, etc.)
+        Debug.Log("The player is dead. Reloading scene...");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);  // Reload the current scene
     }
 }
