@@ -203,9 +203,15 @@ public class RaycastInteraction : MonoBehaviour
                 return;
             }
 
+            if (interactableObject.TryGetComponent(out InteractionActivator activator))
+            {
+                activator.Interact();  // Call the Interact method to activate the object and play sound
+                return;
+            }
+
             if (interactableObject.TryGetComponent(out DrawerController drawer))
             {
-                drawer.ToggleDrawer();  // Toggle the drawer open or closed
+                drawer.ToggleDrawerOrChest();  // Toggle the drawer open or closed
                 Debug.Log("Drawer toggled.");
                 return;
             }
