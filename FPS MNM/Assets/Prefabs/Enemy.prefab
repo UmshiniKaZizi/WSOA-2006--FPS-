@@ -122,10 +122,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1cd70b00132a0143b3c09e94246a13c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawner: {fileID: 0}
   health: 100
   pushForce: 2
   pushDuration: 0.5
-  spawner: {fileID: 0}
+  detectionRadius: 10
+  patrolRadius: 20
+  patrolWaitTime: 2
 --- !u!54 &2434843740544146823
 Rigidbody:
   m_ObjectHideFlags: 0

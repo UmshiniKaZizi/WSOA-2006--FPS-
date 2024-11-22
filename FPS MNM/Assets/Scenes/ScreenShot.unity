@@ -613,7 +613,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100
   CurrentHealth: 0
+  MaxStamina: 100
+  CurrentStamina: 0
+  StaminaDrainRate: 40
+  StaminaRecoveryRate: 5
   healthSlider: {fileID: 1100854040}
+  staminaSlider: {fileID: 0}
 --- !u!114 &98565393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -626,6 +631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d40e32bc0e25bf48a9ca31c8298d79b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mc: {fileID: 0}
   moveSpeed: 10
   lookSpeed: 1
   multiply: 0
@@ -650,6 +656,7 @@ MonoBehaviour:
   canTeleport: 1
   weapons: []
   Weapon: {fileID: 0}
+  playerAttributes: {fileID: 0}
 --- !u!143 &98565394
 CharacterController:
   m_ObjectHideFlags: 0
@@ -28406,7 +28413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee9457dfe787ef479fc8e0cb5ded271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemyprefab: {fileID: 7702990147065452602, guid: e6991ef6b3fd96e4b9e915663b61200e,
+  Enemyprefab: {fileID: 3253171002511368251, guid: af7e0b687d24c244ab9763fc6ee11a43,
     type: 3}
   SpawnInterval: 1
   MaxEnemies: 20
@@ -29484,7 +29491,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8772314391258816753, guid: 3091955cd4b35a24dbd4786119057c35, type: 3}
 --- !u!23 &1852573765
@@ -31553,6 +31560,79 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f597229f18071ca4ea7bd537dfdf3d2f, type: 3}
+--- !u!1001 &4264079718207164908
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2769227129378503297, guid: af7e0b687d24c244ab9763fc6ee11a43,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2769227129378503297, guid: af7e0b687d24c244ab9763fc6ee11a43,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2769227129378503297, guid: af7e0b687d24c244ab9763fc6ee11a43,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2769227129378503297, guid: af7e0b687d24c244ab9763fc6ee11a43,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2769227129378503297, guid: af7e0b687d24c244ab9763fc6ee11a43,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2769227129378503297, guid: af7e0b687d24c244ab9763fc6ee11a43,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2769227129378503297, guid: af7e0b687d24c244ab9763fc6ee11a43,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2769227129378503297, guid: af7e0b687d24c244ab9763fc6ee11a43,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2769227129378503297, guid: af7e0b687d24c244ab9763fc6ee11a43,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2769227129378503297, guid: af7e0b687d24c244ab9763fc6ee11a43,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2960890834702785968, guid: af7e0b687d24c244ab9763fc6ee11a43,
+        type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 1720041484}
+    - target: {fileID: 3253171002511368251, guid: af7e0b687d24c244ab9763fc6ee11a43,
+        type: 3}
+      propertyPath: m_Name
+      value: SLASHER
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: af7e0b687d24c244ab9763fc6ee11a43, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -31576,3 +31656,4 @@ SceneRoots:
   - {fileID: 1315292038}
   - {fileID: 1720041485}
   - {fileID: 1857391574}
+  - {fileID: 4264079718207164908}
