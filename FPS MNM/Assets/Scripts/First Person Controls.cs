@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class FirstPersonControls : MonoBehaviour
 {
-    private Animator mc;
+    public Animator mc;
 
     [Header("MOVEMENT SETTINGS")]
     [Space(5)]
@@ -66,6 +66,8 @@ public class FirstPersonControls : MonoBehaviour
 
     [SerializeField]
     public Weapon Weapon;
+    public PlayerAttributes playerAttributes;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -86,6 +88,7 @@ public class FirstPersonControls : MonoBehaviour
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        
     }
 
     private void OnEnable()
@@ -127,21 +130,69 @@ public class FirstPersonControls : MonoBehaviour
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
         move = transform.TransformDirection(move);
 
+        // Determine the current speed
         float currentSpeed = sprinting ? moveSpeed * movementspeedmultiplier : moveSpeed;
+
+        // Apply movement
         characterController.Move(move * currentSpeed * Time.deltaTime);
+
+        // Update Animator Bools
+        bool isMoving = moveInput != Vector2.zero;
+        mc.SetBool("Walk", isMoving && !sprinting); // Walk when moving and not sprinting
+        mc.SetBool("Run", isMoving && sprinting);   // Run when moving and sprinting
     }
+
+
+
+
+    public IEnumerator StartSprint()
+    {
+        sprinting = true;
+        mc.SetBool("Run", true);
+        playerAttributes.StartSprinting(); // Notify PlayerAttributes
+        yield return new WaitForSeconds(sprintTime);
+        sprinting = false;
+        mc.SetBool("Run", false);
+        playerAttributes.StopSprinting(); // Notify PlayerAttributes
+    }
+
+
+
+
+    private bool isFirstTap = false; // Tracks if the first tap has occurred
 
     public void Sprint()
     {
-        if (!sprinting && moveInput != Vector2.zero)
+        // If player is moving
+        if (moveInput != Vector2.zero)
         {
-            if (Time.time - taptime < doubletaptime)
+            if (!isFirstTap) // First tap detected
             {
-                StartCoroutine(StartSprint());
+                isFirstTap = true;
+                taptime = Time.time; // Record the time of the first tap
             }
-            taptime = Time.time;
+            else // Check for double-tap
+            {
+                if (Time.time - taptime <= doubletaptime) // Second tap within allowed time
+                {
+                    sprinting = true; // Start sprinting
+                    playerAttributes.StartSprinting(); // Notify PlayerAttributes
+                    Debug.Log("Sprinting started!");
+                }
+                isFirstTap = false; // Reset for future double-tap detection
+            }
+        }
+        else
+        {
+            // Reset when player stops moving
+            isFirstTap = false;
+            sprinting = false;
+            playerAttributes.StopSprinting(); // Notify PlayerAttributes
+            Debug.Log("Sprinting stopped!");
         }
     }
+
+
 
     public void Teleport()
     {
@@ -169,13 +220,13 @@ public class FirstPersonControls : MonoBehaviour
         canTeleport = false;
     }
 
-    public IEnumerator StartSprint()
+   /* public IEnumerator StartSprint()
     {
         sprinting = true;
         Debug.Log("Sprinting");
         yield return new WaitForSeconds(sprintTime);
         sprinting = false;
-    }
+    }*/
 
     public void LookAround()
     {
@@ -201,17 +252,13 @@ public class FirstPersonControls : MonoBehaviour
         characterController.Move(velocity * Time.deltaTime);
     }
 
-    void Start()
-    {
-        mc = GetComponent<Animator>();
-    }
-
     public void Jump()
     {
         if (characterController.isGrounded)
         {
-            mc.SetTrigger("Jump");
+
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            mc.SetTrigger("Jump");
         }
     }
 
