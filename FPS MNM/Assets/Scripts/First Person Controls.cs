@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class FirstPersonControls : MonoBehaviour
 {
+    private Animator mc;
+
     [Header("MOVEMENT SETTINGS")]
     [Space(5)]
     public float moveSpeed;
@@ -199,10 +201,16 @@ public class FirstPersonControls : MonoBehaviour
         characterController.Move(velocity * Time.deltaTime);
     }
 
+    void Start()
+    {
+        mc = GetComponent<Animator>();
+    }
+
     public void Jump()
     {
         if (characterController.isGrounded)
         {
+            mc.SetTrigger("Jump");
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
     }
