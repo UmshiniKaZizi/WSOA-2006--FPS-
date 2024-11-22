@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/CUTSCENEMENU.unity
     guid: e355abb47e55ec14ea177d84b6e60c35
   - enabled: 1
+    path: Assets/Scenes/Final.unity
+    guid: 956594254c448804eb71dd527ae966fa
+  - enabled: 0
     path: Assets/Scenes/CRYRALYTIS.unity
     guid: 0b4335d09504c93489086cef1826017c
   - enabled: 1
