@@ -148,7 +148,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: ec8a6cc2f28b49c4cbf5874b1a3b434c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3461.81
+      value: -3461.78
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ec8a6cc2f28b49c4cbf5874b1a3b434c,
         type: 3}
@@ -23260,7 +23260,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100
   CurrentHealth: 0
+  MaxStamina: 100
+  CurrentStamina: 0
+  StaminaDrainRate: 40
+  StaminaRecoveryRate: 5
   healthSlider: {fileID: 171176928}
+  staminaSlider: {fileID: 0}
 --- !u!114 &945453219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23273,6 +23278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d40e32bc0e25bf48a9ca31c8298d79b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mc: {fileID: 0}
   moveSpeed: 10
   lookSpeed: 1
   multiply: 0
@@ -23297,6 +23303,7 @@ MonoBehaviour:
   canTeleport: 1
   weapons: []
   Weapon: {fileID: 0}
+  playerAttributes: {fileID: 0}
 --- !u!143 &945453220
 CharacterController:
   m_ObjectHideFlags: 0
